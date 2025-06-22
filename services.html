@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - ZIGAM</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Header (Sticky) - Same as homepage -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">ZIGAM</a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="booking.html">Book</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="booking.html" class="cta-button">Book a Service</a>
+                <a href="booking.html" class="mobile-book-btn">Book</a>
+                <div class="menu-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header Section -->
+    <section id="services-hero">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p class="subtitle">Explore our full range of domestic and corporate support services — priced fairly, delivered professionally.</p>
+        </div>
+    </section>
+
+    <!-- Category Navigation -->
+    <section id="category-nav">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="all">All</button>
+                <button class="tab-btn" data-category="basic">Basic Services</button>
+                <button class="tab-btn" data-category="deep">Deep Cleaning</button>
+                <button class="tab-btn" data-category="special">Specialty Services</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Cards Grid -->
+    <section id="service-grid">
+        <div class="container">
+            <!-- Basic Services -->
+            <div class="service-category" id="basic-services">
+                <h2 class="category-title">Basic Services</h2>
+                <p class="category-description">Starting at ₦25,000/month</p>
+                <p>Ideal for ongoing daily/weekly support at home or in the office.</p>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3>Laundry</h3>
+                        <p>Washing, folding, and ironing clothes with care</p>
+                        <a href="booking.html?service=basic&type=laundry" class="cta-button primary">Book Now</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shopping-basket"></i>
+                        </div>
+                        <h3>Errands</h3>
+                        <p>Market runs, grocery pickup, personal shopping</p>
+                        <a href="booking.html?service=basic&type=errands" class="cta-button primary">Book Now</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Food Processing</h3>
+                        <p>Cutting, peeling, seasoning, and other meal prep support</p>
+                        <a href="booking.html?service=basic&type=food%20processing" class="cta-button primary">Book Now</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-broom"></i>
+                        </div>
+                        <h3>General Cleaning</h3>
+                        <p>Sweeping, mopping, dusting, bathroom/kitchen surface cleaning</p>
+                        <a href="booking.html?service=basic&type=general%20cleaning" class="cta-button primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deep Cleaning -->
+            <div class="service-category" id="deep-cleaning">
+                <h2 class="category-title">Deep Cleaning</h2>
+                <p class="category-description">One-time service, priced by room count</p>
+                <p>A comprehensive floor-to-ceiling deep clean of your space.</p>
+
+                <div class="pricing-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Bedrooms</th>
+                                <th>Price (₦)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>10,000</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>15,000</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>20,000</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>25,000</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>30,000</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>35,000</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>40,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="footnote">* Pricing may vary for unusually large homes or urgent requests.</p>
+                </div>
+
+                <div class="cta-center">
+                    <a href="booking.html?service=deep-clean&type=standard%20deep%20clean" class="cta-button primary">Book a Deep Clean</a>
+                </div>
+            </div>
+
+            <!-- Special Services -->
+            <div class="service-category" id="special-services">
+                <h2 class="category-title">Special Services</h2>
+                <p class="category-description">Custom quotes available</p>
+
+                <div class="services-grid">
+                    <div class="service-card special">
+                        <div class="service-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Gardening or Landscaping</h3>
+                        <p>Lawn care, flowerbeds, general yard upkeep</p>
+                        <a href="booking.html?service=specialty&type=gardening%2Flandscaping" class="cta-button secondary">Request a Quote</a>
+                    </div>
+
+                    <div class="service-card special">
+                        <div class="service-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h3>Decluttering or Organizing</h3>
+                        <p>Sorting, boxing, organizing spaces</p>
+                        <a href="booking.html?service=specialty&type=decluttering%2Forganizing" class="cta-button secondary">Request a Quote</a>
+                    </div>
+
+                    <div class="service-card special">
+                        <div class="service-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h3>Post Construction Clean</h3>
+                        <p>Dust, debris, window polish — for newly renovated spaces</p>
+                        <a href="booking.html?service=specialty&type=post%20construction%20clean" class="cta-button secondary">Request a Quote</a>
+                    </div>
+
+                    <div class="service-card special">
+                        <div class="service-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <h3>Child & Senior Minding</h3>
+                        <p>Light caregiving, companionship, activity support</p>
+                        <a href="booking.html?service=specialty&type=child%20%26%20senior%20minding" class="cta-button secondary">Request a Quote</a>
+                    </div>
+
+                    <div class="service-card special">
+                        <div class="service-icon">
+                            <i class="fas fa-couch"></i>
+                        </div>
+                        <h3>Upholstery Cleaning</h3>
+                        <p>Sofa, cushion, fabric detailing</p>
+                        <a href="booking.html?service=specialty&type=upholstery%20cleaning" class="cta-button secondary">Request a Quote</a>
+                    </div>
+
+                    <div class="service-card special">
+                        <div class="service-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h3>Fumigation</h3>
+                        <p>Professional pest control (in partnership with specialists)</p>
+                        <a href="booking.html?service=specialty&type=fumigation" class="cta-button secondary">Request a Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ / Policy Section -->
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What areas do you serve?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Currently: Enugu and Lagos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Are your workers vetted?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes — full background checks, interviews, training.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I cancel/reschedule a booking?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, within 24 hours of your service window.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I make payment?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept bank transfers, mobile payments, and cash. For regular customers, we offer convenient monthly billing options.</p>
+                    </div>
+                </div>
+
+                <div class="faq-help-text">
+                    <p>Still need help? <a href="contact.html">Contact our team</a> for personalized assistance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call-to-Action -->
+    <section id="service-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Need help choosing the right service?</h2>
+                <p>We're happy to guide you.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-button primary">Contact Us</a>
+                    <a href="booking.html" class="cta-button secondary">Book a Free Consult</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Same as homepage -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="locations">
+                    <div class="location">
+                        <h3>Enugu</h3>
+                        <p>123 Independence Avenue<br>Enugu, Nigeria</p>
+                    </div>
+                    <div class="location">
+                        <h3>Lagos</h3>
+                        <p>456 Victoria Island<br>Lagos, Nigeria</p>
+                    </div>
+                </div>
+                <div class="contact">
+                    <h3>Contact Us</h3>
+                    <p>Phone: +234 123 456 7890</p>
+                    <p>Email: info@zigam.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+                    <a href="booking.html">Book</a>
+                    <a href="about.html#careers-block">Careers</a>
+                </div>
+                <p class="copyright">© 2023 Zigam. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/services.js"></script>
+</body>
+</html>
