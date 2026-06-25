@@ -3,203 +3,585 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIGAM - Your Home, Our Willing Hands</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>ZIGAM — Coming Soon | Africa's Premier Homemaking Ecosystem</title>
+    <meta name="description" content="Zigam: Africa's premier and most trusted ecosystem of homemaking professionals and the homes and businesses they support. Request Founders Access to the private launch list.">
+
+    <!-- Social sharing -->
+    <meta property="og:title" content="ZIGAM — Coming Soon">
+    <meta property="og:description" content="Africa's premier ecosystem of homemaking professionals. Request Founders Access.">
+    <meta property="og:type" content="website">
+
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ============================================================
+           ZIGAM — Launch / Countdown Page
+           Premium gold + charcoal on cream
+           ------------------------------------------------------------
+           To change the launch date, edit ONE line near the bottom:
+                const LAUNCH_DATE = "2026-07-15T09:00:00+01:00";
+           (Date is in West Africa Time, UTC+1)
+           ============================================================ */
+
+        :root {
+            --gold:        #C2A14D;   /* primary gold */
+            --gold-deep:   #A8862F;   /* darker gold for hovers */
+            --gold-soft:   #E7D6A8;   /* light gold accents */
+            --charcoal:    #2B2B2B;   /* primary dark */
+            --charcoal-2:  #3D3D3D;
+            --cream:       #F3EDE1;   /* page background */
+            --cream-2:     #EDE5D4;
+            --ivory:       #FBF8F1;
+            --text:        #33312C;
+            --muted:       #6A6557;
+            --white:       #FFFFFF;
+            --shadow:      0 10px 40px rgba(43, 43, 43, 0.12);
+            --shadow-sm:   0 4px 18px rgba(43, 43, 43, 0.08);
+            --transition:  all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.15;
+            color: var(--charcoal);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.28em;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--gold-deep);
+            margin-bottom: 1.1rem;
+        }
+
+        /* Decorative gold rule */
+        .rule {
+            display: inline-block;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+            border: 0;
+            margin: 1.2rem 0;
+        }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2.2rem;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 0.82rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1.5px solid transparent;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+            color: var(--white);
+            box-shadow: 0 8px 24px rgba(168, 134, 47, 0.32);
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(168, 134, 47, 0.42);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--charcoal);
+            border-color: var(--gold);
+        }
+        .btn-outline:hover {
+            background: var(--gold);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* ---------- Top bar ---------- */
+        .topbar {
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            padding: 1.6rem 0;
+            z-index: 10;
+        }
+        .topbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .brand img { height: 54px; width: auto; display: block; }
+        /* Fallback wordmark shown if logo image is missing */
+        .brand .wordmark {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 2rem;
+            letter-spacing: 0.18em;
+            color: var(--charcoal);
+        }
+        .rc-no {
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ---------- Hero ---------- */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 9rem 0 5rem;
+            background:
+                radial-gradient(circle at 80% 10%, rgba(194,161,77,0.10), transparent 45%),
+                radial-gradient(circle at 10% 90%, rgba(194,161,77,0.08), transparent 40%),
+                linear-gradient(160deg, var(--ivory), var(--cream) 60%, var(--cream-2));
+        }
+        .hero-inner { max-width: 860px; margin: 0 auto; text-align: center; }
+        .hero-inner h1 {
+            font-size: clamp(2.4rem, 6vw, 4.6rem);
+            margin-bottom: 1.2rem;
+        }
+        .hero-inner h1 .accent { color: var(--gold-deep); font-style: italic; }
+        .lead {
+            font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+            color: var(--muted);
+            max-width: 680px;
+            margin: 0 auto 2.2rem;
+            font-weight: 300;
+        }
+
+        /* ---------- Countdown ---------- */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: clamp(0.6rem, 2.5vw, 1.6rem);
+            margin: 2.6rem 0;
+            flex-wrap: wrap;
+        }
+        .count-box {
+            background: var(--white);
+            border: 1px solid rgba(194,161,77,0.35);
+            border-radius: 10px;
+            padding: 1.3rem clamp(0.9rem, 3vw, 1.9rem);
+            min-width: 92px;
+            box-shadow: var(--shadow-sm);
+        }
+        .count-box .num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 6vw, 3.4rem);
+            font-weight: 700;
+            color: var(--charcoal);
+            line-height: 1;
+            display: block;
+        }
+        .count-box .label {
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.62rem;
+            color: var(--gold-deep);
+            font-weight: 600;
+            margin-top: 0.6rem;
+            display: block;
+        }
+        .launch-note {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+        .launch-note strong { color: var(--charcoal); }
+
+        .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        /* ---------- Section shells ---------- */
+        section.block { padding: 5.5rem 0; }
+        .section-head { text-align: center; max-width: 720px; margin: 0 auto 3.2rem; }
+        .section-head h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+        .section-head p { color: var(--muted); font-weight: 300; }
+
+        /* ---------- Ozi Experience ---------- */
+        #ozi { background: var(--charcoal); color: var(--cream); }
+        #ozi h2, #ozi h3 { color: var(--ivory); }
+        #ozi .section-head p { color: rgba(243,237,225,0.7); }
+        #ozi .eyebrow { color: var(--gold-soft); }
+        .ozi-tagline {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.3rem, 3vw, 1.9rem);
+            font-style: italic;
+            color: var(--gold-soft);
+            max-width: 760px;
+            margin: 0 auto 3.5rem;
+        }
+        .ozi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.6rem;
+            margin-bottom: 3.5rem;
+        }
+        .ozi-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(194,161,77,0.25);
+            border-radius: 12px;
+            padding: 2rem 1.7rem;
+            transition: var(--transition);
+        }
+        .ozi-card:hover { transform: translateY(-6px); border-color: var(--gold); background: rgba(255,255,255,0.07); }
+        .ozi-card .ic {
+            width: 52px; height: 52px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+        .ozi-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .ozi-card p { color: rgba(243,237,225,0.72); font-size: 0.92rem; font-weight: 300; }
+
+        .ozi-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            border-top: 1px solid rgba(194,161,77,0.3);
+            padding-top: 3rem;
+            text-align: center;
+        }
+        .ozi-stats .stat .big {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem; font-weight: 700; color: var(--gold-soft); display:block; line-height:1;
+        }
+        .ozi-stats .stat .cap { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(243,237,225,0.65); margin-top: 0.5rem; display:block; }
+
+        /* ---------- Founders Access ---------- */
+        #founders { background: var(--cream); text-align: center; }
+        .founders-card {
+            background: var(--ivory);
+            border: 1px solid rgba(194,161,77,0.35);
+            border-radius: 16px;
+            padding: clamp(2.5rem, 6vw, 4rem);
+            max-width: 760px;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+        }
+        .founders-card h2 { font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 0.8rem; }
+        .founders-card p { color: var(--muted); margin-bottom: 2rem; font-weight: 300; }
+
+        /* ---------- Workforce ---------- */
+        #workforce { background: var(--cream-2); }
+        .workforce-wrap {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .workforce-wrap .copy h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); }
+        .workforce-wrap .copy p { color: var(--muted); font-weight: 300; margin-bottom: 1rem; }
+        .positions {
+            background: var(--ivory);
+            border-radius: 14px;
+            padding: 2.4rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(194,161,77,0.25);
+            text-align: center;
+        }
+        .positions h3 { font-size: 1.4rem; margin-bottom: 1.2rem; }
+        .position-pill {
+            display: inline-block;
+            background: var(--cream);
+            border: 1px solid var(--gold);
+            color: var(--charcoal);
+            padding: 0.6rem 1.6rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.8rem;
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background: var(--charcoal);
+            color: rgba(243,237,225,0.8);
+            padding: 4rem 0 2rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        footer h4 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.78rem;
+            color: var(--gold-soft);
+            margin-bottom: 1rem;
+        }
+        footer p, footer a { font-size: 0.9rem; color: rgba(243,237,225,0.78); font-weight: 300; }
+        footer a { text-decoration: none; transition: var(--transition); }
+        footer a:hover { color: var(--gold-soft); }
+        .footer-loc strong { color: var(--gold-soft); font-weight:600; }
+        .socials { display: flex; gap: 0.8rem; margin-top: 1rem; }
+        .socials a {
+            width: 38px; height: 38px; border-radius: 50%;
+            display:flex; align-items:center; justify-content:center;
+            border: 1px solid rgba(194,161,77,0.4);
+            color: var(--gold-soft);
+        }
+        .socials a:hover { background: var(--gold); color: var(--charcoal); border-color: var(--gold); }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 1.6rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(243,237,225,0.5);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 760px) {
+            .workforce-wrap { grid-template-columns: 1fr; }
+            .topbar .rc-no { display: none; }
+            section.block { padding: 4rem 0; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header (Sticky) -->
-    <header id="header">
+
+    <!-- ===================== TOP BAR ===================== -->
+    <header class="topbar">
         <div class="container">
-            <div class="logo">
-                <a href="index.html">ZIGAM</a>
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="booking.html">Book</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-                <a href="booking.html" class="cta-button">Book a Service</a>
-                <a href="booking.html" class="mobile-book-btn">Book</a>
-                <div class="menu-toggle">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </nav>
+            <a href="home.html" class="brand" aria-label="Zigam home">
+                <!-- Drop your logo file at images/zigam-logo.png. If it's missing, the wordmark below shows. -->
+                <img src="images/zigam-logo.png" alt="ZIGAM"
+                     onerror="this.style.display='none'; document.getElementById('wordmark').style.display='inline';">
+                <span class="wordmark" id="wordmark" style="display:none;">ZIGAM</span>
+            </a>
+            <span class="rc-no">RC No. 9288075</span>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- ===================== HERO ===================== -->
     <section id="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Your Home, Our Willing Hands.</h1>
-                <p class="subheadline">Reliable, affordable homemaking support — powered by trained youth, built on trust.</p>
-                <div class="cta-buttons">
-                    <a href="booking.html" class="cta-button primary">Book a Service</a>
-                    <a href="about.html#careers-block" class="cta-button secondary">Join Our Team</a>
+            <div class="hero-inner">
+                <p class="eyebrow">Something refined is coming</p>
+                <h1>Africa's premier ecosystem of <span class="accent">homemaking professionals</span></h1>
+                <p class="lead">Zigam connects discerning homes and businesses with elite, trusted service professionals — built on mastery, dignity, and trust.</p>
+
+                <!-- Countdown -->
+                <div class="countdown" id="countdown" aria-live="polite">
+                    <div class="count-box"><span class="num" id="days">--</span><span class="label">Days</span></div>
+                    <div class="count-box"><span class="num" id="hours">--</span><span class="label">Hours</span></div>
+                    <div class="count-box"><span class="num" id="minutes">--</span><span class="label">Minutes</span></div>
+                    <div class="count-box"><span class="num" id="seconds">--</span><span class="label">Seconds</span></div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="images/hero-image.png" alt="Smiling domestic worker in a tidy home">
+                <p class="launch-note">Launching <strong id="launch-label">mid-July 2026</strong> · Enugu &amp; Lagos</p>
+
+                <div class="hero-ctas">
+                    <a href="https://forms.gle/Vz3sJi5TgAceiSSW7" target="_blank" rel="noopener" class="btn btn-gold">
+                        <i class="fas fa-key"></i> Request Founders Access
+                    </a>
+                    <a href="#ozi" class="btn btn-outline">Discover the Ozi Experience</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Service Preview Grid -->
-    <section id="services">
+    <!-- ===================== OZI EXPERIENCE ===================== -->
+    <section id="ozi" class="block">
         <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-broom"></i>
-                    </div>
-                    <h3>Home Cleaning</h3>
-                    <p>Professional cleaning services for every corner of your home.</p>
+            <div class="section-head">
+                <p class="eyebrow">Our signature solution</p>
+                <h2>The Ozi Experience</h2>
+                <p>A signature four-in-one support solution designed for modern homes and businesses — a seamless eight-hour lifestyle service covering your cleaning, laundry, errands and kitchen needs, all in one booking or subscription.</p>
+            </div>
+
+            <p class="ozi-tagline">"We create more than clean and organised spaces — we create time, comfort, and peace of mind."</p>
+
+            <div class="ozi-grid">
+                <div class="ozi-card">
+                    <div class="ic"><i class="fas fa-broom"></i></div>
+                    <h3>Cleaning &amp; Care</h3>
+                    <p>Home and workplace cleaning that creates clean, beautifully maintained, and refreshed spaces.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <h3>Laundry</h3>
-                    <p>Wash, dry, and fold services with attention to detail.</p>
+                <div class="ozi-card">
+                    <div class="ic"><i class="fas fa-shirt"></i></div>
+                    <h3>Wardrobe &amp; Laundry</h3>
+                    <p>Thoughtful care for your garments and household linens, handled with precision.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shopping-basket"></i>
-                    </div>
-                    <h3>Errands</h3>
-                    <p>Let us handle your errands while you focus on what matters.</p>
+                <div class="ozi-card">
+                    <div class="ic"><i class="fas fa-bag-shopping"></i></div>
+                    <h3>Errand Concierge</h3>
+                    <p>Managing everyday tasks and your personal errands with ease, so you focus on what matters.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <h3>Gardening</h3>
-                    <p>Keep your outdoor spaces looking fresh and well-maintained.</p>
+                <div class="ozi-card">
+                    <div class="ic"><i class="fas fa-utensils"></i></div>
+                    <h3>Kitchen Operations</h3>
+                    <p>A professional <em>mise en place</em> — ingredient prep, pantry organisation, and kitchen upkeep.</p>
                 </div>
             </div>
-            <div class="cta-center" style="margin-top: 2rem;">
-                <a href="services.html" class="cta-button secondary">View All Services</a>
+
+            <div class="ozi-stats">
+                <div class="stat"><span class="big">1</span><span class="cap">Booking / Subscription</span></div>
+                <div class="stat"><span class="big">1</span><span class="cap">Trained Associate</span></div>
+                <div class="stat"><span class="big">4</span><span class="cap">Essential Services</span></div>
+                <div class="stat"><span class="big">8</span><span class="cap">Hours of Possibility</span></div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Zigam -->
-    <section id="why-choose">
+    <!-- ===================== FOUNDERS ACCESS ===================== -->
+    <section id="founders" class="block">
         <div class="container">
-            <h2 class="section-title">Why Choose Zigam</h2>
-            <div class="why-choose-content">
-                <div class="features">
-                    <ul>
-                        <li><i class="fas fa-check"></i> Trained and vetted staff</li>
-                        <li><i class="fas fa-check"></i> Flexible scheduling</li>
-                        <li><i class="fas fa-check"></i> Affordable rates</li>
-                        <li><i class="fas fa-check"></i> Quality guaranteed</li>
-                        <li><i class="fas fa-check"></i> Insured services</li>
-                    </ul>
-                </div>
-                <div class="testimonial">
-                    <div class="quote">
-                        <p>"Zigam has transformed how I manage my home. Their staff is professional, courteous, and delivers quality service every time. I couldn't be happier!"</p>
-                        <cite>— Mrs. Adebayo, Lagos</cite>
-                    </div>
-                </div>
+            <div class="founders-card">
+                <p class="eyebrow">By invitation</p>
+                <h2>Request Founders Access</h2>
+                <hr class="rule">
+                <p>Join the private launch list reserved for those who want first access to Zigam. Be among the first homes and businesses to experience a new standard of support.</p>
+                <a href="https://forms.gle/Vz3sJi5TgAceiSSW7" target="_blank" rel="noopener" class="btn btn-gold">
+                    <i class="fas fa-arrow-right"></i> Join the Launch List
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Snapshot -->
-    <section id="pricing">
+    <!-- ===================== WORKFORCE ===================== -->
+    <section id="workforce" class="block">
         <div class="container">
-            <h2 class="section-title">Our Pricing</h2>
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <div class="pricing-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>Basic Plan</h3>
-                    <p class="price">From ₦25,000/month</p>
-                    <p>Regular cleaning and basic home maintenance</p>
+            <div class="workforce-wrap">
+                <div class="copy">
+                    <p class="eyebrow">Join the Zigam workforce</p>
+                    <h2>Meaningful work that fits your life</h2>
+                    <p>Looking for meaningful work that fits into your lifestyle, routine and schedule? We're hiring young adults in Enugu and Lagos.</p>
+                    <p>As a Zigam Associate, you'll receive professional training, supervision, and the dignity of formal work — on a schedule that respects your time. We're building a future where home and workplace support is safe, respected, and rewarding for all.</p>
                 </div>
-                <div class="pricing-card">
-                    <div class="pricing-icon">
-                        <i class="fas fa-spray-can"></i>
-                    </div>
-                    <h3>Deep Cleaning</h3>
-                    <p class="price">From ₦45,000/session</p>
-                    <p>Thorough cleaning for all areas of your home</p>
+                <div class="positions">
+                    <p class="eyebrow" style="color:var(--gold-deep)">Open Positions</p>
+                    <h3>Associate</h3>
+                    <span class="position-pill">Enugu &amp; Lagos</span><br>
+                    <a href="https://forms.gle/Vz3sJi5TgAceiSSW7" target="_blank" rel="noopener" class="btn btn-outline">
+                        <i class="fas fa-user-plus"></i> Apply to Join
+                    </a>
                 </div>
-                <div class="pricing-card">
-                    <div class="pricing-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Specialty Services</h3>
-                    <p class="price">Custom pricing</p>
-                    <p>Tailored services for your unique needs</p>
-                </div>
-            </div>
-            <div class="cta-center">
-                <a href="services.html" class="cta-button secondary">See All Pricing</a>
             </div>
         </div>
     </section>
 
-    <!-- Careers Callout -->
-    <section id="careers">
-        <div class="container">
-            <div class="careers-content">
-                <h2>Looking for Flexible Work?</h2>
-                <p>Join our team. We offer training, dignity, and fair pay.</p>
-                <a href="about.html#careers-block" class="cta-button primary">Apply Now</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- ===================== FOOTER ===================== -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="locations">
-                    <div class="location">
-                        <h3>Enugu</h3>
-                        <p>123 Independence Avenue<br>Enugu, Nigeria</p>
-                    </div>
-                    <div class="location">
-                        <h3>Lagos</h3>
-                        <p>456 Victoria Island<br>Lagos, Nigeria</p>
-                    </div>
+            <div class="footer-grid">
+                <div class="footer-loc">
+                    <h4>Enugu Office</h4>
+                    <p><strong>Number 4 Ridge Way Road,</strong><br>GRA, Enugu.</p>
                 </div>
-                <div class="contact">
-                    <h3>Contact Us</h3>
-                    <p>Phone: +234 123 456 7890</p>
-                    <p>Email: info@zigam.com</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                <div class="footer-loc">
+                    <h4>Lagos Office</h4>
+                    <p><strong>Block 4, House 7, Bayview Estate,</strong><br>Dupe Oguntade Street, Ikate, Lekki, Lagos State.</p>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone" style="color:var(--gold-soft)"></i> <a href="tel:+2347053728258">+234 705 372 8258</a></p>
+                    <p><i class="fas fa-envelope" style="color:var(--gold-soft)"></i> <a href="mailto:Zigam2026@gmail.com">Zigam2026@gmail.com</a></p>
+                    <div class="socials">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <div class="footer-links">
-                    <a href="#">Terms</a>
-                    <a href="#">Privacy</a>
-                    <a href="booking.html">Book</a>
-                    <a href="about.html#careers-block">Careers</a>
-                </div>
-                <p class="copyright">© 2023 Zigam. All rights reserved.</p>
+                <p>&copy; <span id="year"></span> Zigam · RC No. 9288075 · All rights reserved. · Your Home, Our Willing Hands.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script>
+        /* ============================================================
+           LAUNCH DATE — edit this single line to change the countdown.
+           Format: YYYY-MM-DDTHH:MM:SS+01:00  (West Africa Time, UTC+1)
+           ============================================================ */
+        const LAUNCH_DATE = "2026-07-15T09:00:00+01:00";
+
+        const target = new Date(LAUNCH_DATE).getTime();
+        const el = {
+            days: document.getElementById('days'),
+            hours: document.getElementById('hours'),
+            minutes: document.getElementById('minutes'),
+            seconds: document.getElementById('seconds'),
+        };
+
+        function pad(n) { return String(n).padStart(2, '0'); }
+
+        function tick() {
+            const now = Date.now();
+            let diff = target - now;
+
+            if (diff <= 0) {
+                el.days.textContent = '00';
+                el.hours.textContent = '00';
+                el.minutes.textContent = '00';
+                el.seconds.textContent = '00';
+                document.getElementById('launch-label').textContent = 'now — we are live!';
+                clearInterval(timer);
+                return;
+            }
+            const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+            const h = Math.floor(diff / 3600000);  diff -= h * 3600000;
+            const m = Math.floor(diff / 60000);     diff -= m * 60000;
+            const s = Math.floor(diff / 1000);
+
+            el.days.textContent = pad(d);
+            el.hours.textContent = pad(h);
+            el.minutes.textContent = pad(m);
+            el.seconds.textContent = pad(s);
+        }
+
+        tick();
+        const timer = setInterval(tick, 1000);
+
+        // Show launch month/year label dynamically
+        const opts = { month: 'long', year: 'numeric' };
+        document.getElementById('launch-label').textContent =
+            new Date(LAUNCH_DATE).toLocaleDateString('en-GB', opts);
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
