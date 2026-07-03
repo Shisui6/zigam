@@ -28,12 +28,12 @@
            ============================================================ */
 
         :root {
-            --gold:        #C2A14D;   /* primary gold */
-            --gold-deep:   #A8862F;   /* darker gold for hovers */
-            --gold-soft:   #E7D6A8;   /* light gold accents */
-            --charcoal:    #2B2B2B;   /* primary dark */
+            --gold:        #C2A14D;
+            --gold-deep:   #A8862F;
+            --gold-soft:   #E7D6A8;
+            --charcoal:    #2B2B2B;
             --charcoal-2:  #3D3D3D;
-            --cream:       #F3EDE1;   /* page background */
+            --cream:       #F3EDE1;
             --cream-2:     #EDE5D4;
             --ivory:       #FBF8F1;
             --text:        #33312C;
@@ -45,7 +45,6 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
@@ -63,11 +62,7 @@
             color: var(--charcoal);
         }
 
-        .container {
-            width: 90%;
-            max-width: 1120px;
-            margin: 0 auto;
-        }
+        .container { width: 90%; max-width: 1120px; margin: 0 auto; }
 
         .eyebrow {
             font-family: 'Montserrat', sans-serif;
@@ -79,152 +74,75 @@
             margin-bottom: 1.1rem;
         }
 
-        /* Decorative gold rule */
         .rule {
             display: inline-block;
-            width: 60px;
-            height: 2px;
+            width: 60px; height: 2px;
             background: linear-gradient(90deg, var(--gold), var(--gold-soft));
-            border: 0;
-            margin: 1.2rem 0;
+            border: 0; margin: 1.2rem 0;
         }
 
         /* ---------- Buttons ---------- */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 1rem 2.2rem;
-            border-radius: 4px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            font-size: 0.82rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: var(--transition);
-            border: 1.5px solid transparent;
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 1rem 2.2rem; border-radius: 4px;
+            font-family: 'Montserrat', sans-serif; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            font-size: 0.82rem; cursor: pointer; text-decoration: none;
+            transition: var(--transition); border: 1.5px solid transparent;
         }
         .btn-gold {
             background: linear-gradient(135deg, var(--gold), var(--gold-deep));
-            color: var(--white);
-            box-shadow: 0 8px 24px rgba(168, 134, 47, 0.32);
+            color: var(--white); box-shadow: 0 8px 24px rgba(168, 134, 47, 0.32);
         }
-        .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(168, 134, 47, 0.42);
-        }
-        .btn-outline {
-            background: transparent;
-            color: var(--charcoal);
-            border-color: var(--gold);
-        }
-        .btn-outline:hover {
-            background: var(--gold);
-            color: var(--white);
-            transform: translateY(-3px);
-        }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(168, 134, 47, 0.42); }
+        .btn-outline { background: transparent; color: var(--charcoal); border-color: var(--gold); }
+        .btn-outline:hover { background: var(--gold); color: var(--white); transform: translateY(-3px); }
 
         /* ---------- Top bar ---------- */
-        .topbar {
-            position: absolute;
-            top: 0; left: 0; width: 100%;
-            padding: 1.6rem 0;
-            z-index: 10;
-        }
-        .topbar .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-        }
-        .brand img { height: 54px; width: auto; display: block; }
-        /* Fallback wordmark shown if logo image is missing */
+        .topbar { position: absolute; top: 0; left: 0; width: 100%; padding: 1.4rem 0; z-index: 10; }
+        .topbar .container { display: flex; align-items: center; justify-content: space-between; }
+        .brand { display: flex; align-items: center; gap: 0.7rem; }
+        .brand img { height: clamp(84px, 12vw, 140px); width: auto; display: block; }
         .brand .wordmark {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-            font-size: 2rem;
-            letter-spacing: 0.18em;
-            color: var(--charcoal);
+            font-family: 'Cormorant Garamond', serif; font-weight: 700;
+            font-size: clamp(2.4rem, 6vw, 3.4rem); letter-spacing: 0.18em; color: var(--charcoal);
         }
-        .rc-no {
-            font-size: 0.7rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--muted);
-        }
+        .rc-no { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
 
         /* ---------- Hero ---------- */
         #hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 9rem 0 5rem;
+            position: relative; min-height: 100vh; display: flex; align-items: center;
+            padding: 12rem 0 5rem;
             background:
                 radial-gradient(circle at 80% 10%, rgba(194,161,77,0.10), transparent 45%),
                 radial-gradient(circle at 10% 90%, rgba(194,161,77,0.08), transparent 40%),
                 linear-gradient(160deg, var(--ivory), var(--cream) 60%, var(--cream-2));
         }
         .hero-inner { max-width: 860px; margin: 0 auto; text-align: center; }
-        .hero-inner h1 {
-            font-size: clamp(2.4rem, 6vw, 4.6rem);
-            margin-bottom: 1.2rem;
-        }
+        .hero-inner h1 { font-size: clamp(2.4rem, 6vw, 4.6rem); margin-bottom: 1.2rem; }
         .hero-inner h1 .accent { color: var(--gold-deep); font-style: italic; }
         .lead {
-            font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-            color: var(--muted);
-            max-width: 680px;
-            margin: 0 auto 2.2rem;
-            font-weight: 300;
+            font-size: clamp(1.05rem, 2.2vw, 1.35rem); color: var(--muted);
+            max-width: 680px; margin: 0 auto 2.2rem; font-weight: 300;
         }
 
         /* ---------- Countdown ---------- */
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: clamp(0.6rem, 2.5vw, 1.6rem);
-            margin: 2.6rem 0;
-            flex-wrap: wrap;
-        }
+        .countdown { display: flex; justify-content: center; gap: clamp(0.6rem, 2.5vw, 1.6rem); margin: 2.6rem 0; flex-wrap: wrap; }
         .count-box {
-            background: var(--white);
-            border: 1px solid rgba(194,161,77,0.35);
-            border-radius: 10px;
-            padding: 1.3rem clamp(0.9rem, 3vw, 1.9rem);
-            min-width: 92px;
-            box-shadow: var(--shadow-sm);
+            background: var(--white); border: 1px solid rgba(194,161,77,0.35);
+            border-radius: 10px; padding: 1.3rem clamp(0.9rem, 3vw, 1.9rem);
+            min-width: 92px; box-shadow: var(--shadow-sm);
         }
         .count-box .num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.2rem, 6vw, 3.4rem);
-            font-weight: 700;
-            color: var(--charcoal);
-            line-height: 1;
-            display: block;
+            font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 3.4rem);
+            font-weight: 700; color: var(--charcoal); line-height: 1; display: block;
         }
         .count-box .label {
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            font-size: 0.62rem;
-            color: var(--gold-deep);
-            font-weight: 600;
-            margin-top: 0.6rem;
-            display: block;
+            text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.62rem;
+            color: var(--gold-deep); font-weight: 600; margin-top: 0.6rem; display: block;
         }
-        .launch-note {
-            font-size: 0.9rem;
-            color: var(--muted);
-            margin-bottom: 2rem;
-        }
+        .launch-note { font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; }
         .launch-note strong { color: var(--charcoal); }
-
         .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
         /* ---------- Section shells ---------- */
@@ -239,139 +157,71 @@
         #ozi .section-head p { color: rgba(243,237,225,0.7); }
         #ozi .eyebrow { color: var(--gold-soft); }
         .ozi-tagline {
-            text-align: center;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.3rem, 3vw, 1.9rem);
-            font-style: italic;
-            color: var(--gold-soft);
-            max-width: 760px;
-            margin: 0 auto 3.5rem;
+            text-align: center; font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.3rem, 3vw, 1.9rem); font-style: italic;
+            color: var(--gold-soft); max-width: 760px; margin: 0 auto 3.5rem;
         }
-        .ozi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.6rem;
-            margin-bottom: 3.5rem;
-        }
+        .ozi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.6rem; margin-bottom: 3.5rem; }
         .ozi-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(194,161,77,0.25);
-            border-radius: 12px;
-            padding: 2rem 1.7rem;
-            transition: var(--transition);
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(194,161,77,0.25);
+            border-radius: 12px; padding: 2rem 1.7rem; transition: var(--transition);
         }
         .ozi-card:hover { transform: translateY(-6px); border-color: var(--gold); background: rgba(255,255,255,0.07); }
         .ozi-card .ic {
-            width: 52px; height: 52px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), var(--gold-deep));
-            color: var(--white);
-            font-size: 1.2rem;
-            margin-bottom: 1.2rem;
+            width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+            color: var(--white); font-size: 1.2rem; margin-bottom: 1.2rem;
         }
         .ozi-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
         .ozi-card p { color: rgba(243,237,225,0.72); font-size: 0.92rem; font-weight: 300; }
-
         .ozi-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            border-top: 1px solid rgba(194,161,77,0.3);
-            padding-top: 3rem;
-            text-align: center;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;
+            border-top: 1px solid rgba(194,161,77,0.3); padding-top: 3rem; text-align: center;
         }
-        .ozi-stats .stat .big {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.8rem; font-weight: 700; color: var(--gold-soft); display:block; line-height:1;
-        }
+        .ozi-stats .stat .big { font-family: 'Montserrat', sans-serif; font-size: 2.6rem; font-weight: 700; color: var(--gold-soft); display:block; line-height:1; }
         .ozi-stats .stat .cap { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(243,237,225,0.65); margin-top: 0.5rem; display:block; }
 
         /* ---------- Founders Access ---------- */
         #founders { background: var(--cream); text-align: center; }
         .founders-card {
-            background: var(--ivory);
-            border: 1px solid rgba(194,161,77,0.35);
-            border-radius: 16px;
-            padding: clamp(2.5rem, 6vw, 4rem);
-            max-width: 760px;
-            margin: 0 auto;
-            box-shadow: var(--shadow);
+            background: var(--ivory); border: 1px solid rgba(194,161,77,0.35);
+            border-radius: 16px; padding: clamp(2.5rem, 6vw, 4rem);
+            max-width: 760px; margin: 0 auto; box-shadow: var(--shadow);
         }
         .founders-card h2 { font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 0.8rem; }
         .founders-card p { color: var(--muted); margin-bottom: 2rem; font-weight: 300; }
 
         /* ---------- Workforce ---------- */
         #workforce { background: var(--cream-2); }
-        .workforce-wrap {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
+        .workforce-wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center; }
         .workforce-wrap .copy h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); }
         .workforce-wrap .copy p { color: var(--muted); font-weight: 300; margin-bottom: 1rem; }
         .positions {
-            background: var(--ivory);
-            border-radius: 14px;
-            padding: 2.4rem;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(194,161,77,0.25);
-            text-align: center;
+            background: var(--ivory); border-radius: 14px; padding: 2.4rem;
+            box-shadow: var(--shadow-sm); border: 1px solid rgba(194,161,77,0.25); text-align: center;
         }
         .positions h3 { font-size: 1.4rem; margin-bottom: 1.2rem; }
         .position-pill {
-            display: inline-block;
-            background: var(--cream);
-            border: 1px solid var(--gold);
-            color: var(--charcoal);
-            padding: 0.6rem 1.6rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.8rem;
+            display: inline-block; background: var(--cream); border: 1px solid var(--gold);
+            color: var(--charcoal); padding: 0.6rem 1.6rem; border-radius: 50px;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 1.8rem;
         }
 
         /* ---------- Footer ---------- */
-        footer {
-            background: var(--charcoal);
-            color: rgba(243,237,225,0.8);
-            padding: 4rem 0 2rem;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 3rem;
-        }
-        footer h4 {
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            font-size: 0.78rem;
-            color: var(--gold-soft);
-            margin-bottom: 1rem;
-        }
+        footer { background: var(--charcoal); color: rgba(243,237,225,0.8); padding: 4rem 0 2rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; margin-bottom: 3rem; }
+        footer h4 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.78rem; color: var(--gold-soft); margin-bottom: 1rem; }
         footer p, footer a { font-size: 0.9rem; color: rgba(243,237,225,0.78); font-weight: 300; }
         footer a { text-decoration: none; transition: var(--transition); }
         footer a:hover { color: var(--gold-soft); }
         .footer-loc strong { color: var(--gold-soft); font-weight:600; }
         .socials { display: flex; gap: 0.8rem; margin-top: 1rem; }
         .socials a {
-            width: 38px; height: 38px; border-radius: 50%;
-            display:flex; align-items:center; justify-content:center;
-            border: 1px solid rgba(194,161,77,0.4);
-            color: var(--gold-soft);
+            width: 38px; height: 38px; border-radius: 50%; display:flex; align-items:center; justify-content:center;
+            border: 1px solid rgba(194,161,77,0.4); color: var(--gold-soft);
         }
         .socials a:hover { background: var(--gold); color: var(--charcoal); border-color: var(--gold); }
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.08);
-            padding-top: 1.6rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: rgba(243,237,225,0.5);
-        }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.6rem; text-align: center; font-size: 0.8rem; color: rgba(243,237,225,0.5); }
 
         /* ---------- Responsive ---------- */
         @media (max-width: 760px) {
@@ -386,7 +236,7 @@
     <!-- ===================== TOP BAR ===================== -->
     <header class="topbar">
         <div class="container">
-            <a href="home.html" class="brand" aria-label="Zigam home">
+            <a href="index.html" class="brand" aria-label="Zigam home">
                 <!-- Drop your logo file at images/zigam-logo.png. If it's missing, the wordmark below shows. -->
                 <img src="images/zigam-logo.png" alt="ZIGAM"
                      onerror="this.style.display='none'; document.getElementById('wordmark').style.display='inline';">
@@ -400,7 +250,8 @@
     <section id="hero">
         <div class="container">
             <div class="hero-inner">
-                <p class="eyebrow">Something refined is coming</p>
+                <p class="eyebrow">We are making the art of effortless living possible</p>
+                <p style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold-deep); font-size:clamp(1.4rem, 3vw, 2rem); letter-spacing:0.06em; margin-bottom:1.4rem;">Coming Soon</p>
                 <h1>Africa's premier ecosystem of <span class="accent">homemaking professionals</span></h1>
                 <p class="lead">Zigam connects discerning homes and businesses with elite, trusted service professionals — built on mastery, dignity, and trust.</p>
 
@@ -414,8 +265,8 @@
                 <p class="launch-note">Launching <strong id="launch-label">mid-July 2026</strong> · Enugu &amp; Lagos</p>
 
                 <div class="hero-ctas">
-                    <a href="https://forms.gle/Vz3sJi5TgAceiSSW7" target="_blank" rel="noopener" class="btn btn-gold">
-                        <i class="fas fa-key"></i> Request Founders Access
+                    <a href="https://forms.gle/ZKiv88SXvTrNgeNM8" target="_blank" rel="noopener" class="btn btn-gold">
+                        <i class="fas fa-key"></i> Request Founder's Access
                     </a>
                     <a href="#ozi" class="btn btn-outline">Discover the Ozi Experience</a>
                 </div>
@@ -429,7 +280,7 @@
             <div class="section-head">
                 <p class="eyebrow">Our signature solution</p>
                 <h2>The Ozi Experience</h2>
-                <p>A signature four-in-one support solution designed for modern homes and businesses — a seamless eight-hour lifestyle service covering your cleaning, laundry, errands and kitchen needs, all in one booking or subscription.</p>
+                <p>A signature four-in-one support solution designed for modern homes and businesses. The seamless eight-hour lifestyle service covering your cleaning, laundry, errands and kitchen needs, all in one booking or subscription.</p>
             </div>
 
             <p class="ozi-tagline">"We create more than clean and organised spaces — we create time, comfort, and peace of mind."</p>
@@ -461,7 +312,7 @@
                 <div class="stat"><span class="big">1</span><span class="cap">Booking / Subscription</span></div>
                 <div class="stat"><span class="big">1</span><span class="cap">Trained Associate</span></div>
                 <div class="stat"><span class="big">4</span><span class="cap">Essential Services</span></div>
-                <div class="stat"><span class="big">8</span><span class="cap">Hours of Possibility</span></div>
+                <div class="stat"><span class="big">8</span><span class="cap">Hours of Endless Possibilities</span></div>
             </div>
         </div>
     </section>
@@ -471,10 +322,10 @@
         <div class="container">
             <div class="founders-card">
                 <p class="eyebrow">By invitation</p>
-                <h2>Request Founders Access</h2>
+                <h2>Request Founder's Access</h2>
                 <hr class="rule">
                 <p>Join the private launch list reserved for those who want first access to Zigam. Be among the first homes and businesses to experience a new standard of support.</p>
-                <a href="https://forms.gle/Vz3sJi5TgAceiSSW7" target="_blank" rel="noopener" class="btn btn-gold">
+                <a href="https://forms.gle/ZKiv88SXvTrNgeNM8" target="_blank" rel="noopener" class="btn btn-gold">
                     <i class="fas fa-arrow-right"></i> Join the Launch List
                 </a>
             </div>
@@ -486,7 +337,7 @@
         <div class="container">
             <div class="workforce-wrap">
                 <div class="copy">
-                    <p class="eyebrow">Join the Zigam workforce</p>
+                    <p class="eyebrow" style="font-weight:700; font-size:0.9rem; color:var(--charcoal);">JOIN THE ZIGAM WORKFORCE</p>
                     <h2>Meaningful work that fits your life</h2>
                     <p>Looking for meaningful work that fits into your lifestyle, routine and schedule? We're hiring young adults in Enugu and Lagos.</p>
                     <p>As a Zigam Associate, you'll receive professional training, supervision, and the dignity of formal work — on a schedule that respects your time. We're building a future where home and workplace support is safe, respected, and rewarding for all.</p>
@@ -513,16 +364,16 @@
                 </div>
                 <div class="footer-loc">
                     <h4>Lagos Office</h4>
-                    <p><strong>Block 4, House 7, Bayview Estate,</strong><br>Dupe Oguntade Street, Ikate, Lekki, Lagos State.</p>
+                    <p><strong>Bayview Estate,</strong><br>Lekki, Lagos State.</p>
                 </div>
                 <div>
                     <h4>Contact</h4>
                     <p><i class="fas fa-phone" style="color:var(--gold-soft)"></i> <a href="tel:+2347053728258">+234 705 372 8258</a></p>
                     <p><i class="fas fa-envelope" style="color:var(--gold-soft)"></i> <a href="mailto:Zigam2026@gmail.com">Zigam2026@gmail.com</a></p>
                     <div class="socials">
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/zigamozi/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://web.facebook.com/profile.php?id=61591459292455" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/company/zigam/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
@@ -576,7 +427,6 @@
         tick();
         const timer = setInterval(tick, 1000);
 
-        // Show launch month/year label dynamically
         const opts = { month: 'long', year: 'numeric' };
         document.getElementById('launch-label').textContent =
             new Date(LAUNCH_DATE).toLocaleDateString('en-GB', opts);

@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.head.insertAdjacentHTML('beforeend', `
     <style>
         .pricing-table tr.selected {
-            background-color: rgba(59, 174, 114, 0.1);
+            background-color: rgba(194, 161, 77, 0.15);
             font-weight: bold;
         }
     </style>

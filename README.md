@@ -1,78 +1,45 @@
-# Zigam Website
+# Zigam
 
-A professional website for Zigam, a homemaking service provider.
+Africa's premier ecosystem of homemaking professionals — marketing site and (soon) booking platform.
 
-## Overview
+Built with **Next.js 14 (App Router) + TypeScript**, styled with a custom design system (no CSS framework) in the Zigam premium gold/charcoal/cream language.
 
-This is the codebase for the Zigam website, built with HTML, CSS, and JavaScript. The website is designed to be responsive and user-friendly, showcasing the services provided by Zigam.
+## Run locally
 
-## Features
-
-- Responsive design for all screen sizes
-- Modern, clean UI with brand colors
-- Interactive elements
-- Mobile-friendly navigation
-
-## File Structure
-
-```
-zigam/
-├── index.html          # Main HTML file
-├── css/
-│   └── style.css      # Main stylesheet
-├── js/
-│   └── script.js      # JavaScript functionality
-└── images/            # Image assets
-    └── hero-image.jpg # Hero section image
+```bash
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-## Getting Started
+Other scripts:
 
-To view the website locally:
+```bash
+npm run build    # production build
+npm run start    # serve the production build
+```
 
-1. Clone this repository
-2. Open `index.html` in your browser
+## Structure
 
-## Requirements for Production
+```
+src/
+  app/
+    layout.tsx            # root layout, fonts, header/footer
+    globals.css           # design system (tokens, components, animations)
+    page.tsx              # Home
+    about/  services/  contact/  booking/  terms/  service-details/  launch/
+  components/             # Header, Footer, Logo, Reveal, Faq, Countdown, ContactForm
+  lib/site.ts             # central config: contact info, form links, pricing tiers, launch date
+public/images/            # logo, hero, team, favicon
+docs/                     # ZIGAM_UPDATE_PLAN.md, ZIGAM_BUILD_ROADMAP.md
+legacy/                   # the previous static HTML site (archived for reference)
+```
 
-For the production website, you'll need:
+## Editing common things
 
-1. Real content images:
-   - Hero image of a domestic worker in uniform
-   - High-quality images for services
-   - Logo/favicon
+- **Contact details, social links, form URLs, pricing, launch date** -> `src/lib/site.ts`
+- **Colours / typography / spacing** -> `:root` and component classes in `src/app/globals.css`
+- **Logo** -> `public/images/zigam-logo.png` (falls back to a text wordmark if missing)
 
-2. Real content:
-   - Actual pricing information
-   - Real testimonials
-   - Accurate contact information
-   - Google Form link for careers
+## Next steps (see docs/ZIGAM_BUILD_ROADMAP.md)
 
-## Brand Colors
-
-- Primary color (Warm green): `#3BAE72`
-- Secondary color (Accent gold): `#F7B731`
-- Background color (Soft cream): `#FDFBF7`
-- Text color (Charcoal): `#333333`
-- Border color (Light grey): `#EAEAEA`
-
-## Typography
-
-- Headings: Montserrat (Bold)
-- Body text: Open Sans
-
-## Browser Compatibility
-
-This website is compatible with:
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers
-
-## Future Enhancements
-
-- Add booking form functionality
-- Implement user authentication
-- Add service booking calendar
-- Integrate payment system
+Phase 1 is the booking + payments engine (Supabase + Paystack). The current `/booking` page is an interim placeholder pointing to the Founder's form, phone, and email until that is built.

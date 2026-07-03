@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - ZIGAM</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Header (Sticky) -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" aria-label="Zigam home">
+                    <img src="images/zigam-logo.png" alt="ZIGAM"
+                         onerror="this.style.display='none'; this.insertAdjacentText('afterend','ZIGAM');">
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="booking.html">Book</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="booking.html" class="cta-button">Book a Service</a>
+                <a href="booking.html" class="mobile-book-btn">Book</a>
+                <div class="menu-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header Section -->
+    <section id="services-hero">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p class="subtitle">Explore our full range of home and workplace support services — priced fairly, delivered professionally.</p>
+        </div>
+    </section>
+
+    <!-- Category Navigation -->
+    <section id="category-nav">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="all">All</button>
+                <button class="tab-btn" data-category="ozi">Ozi Plan</button>
+                <button class="tab-btn" data-category="deep">Deep Cleaning</button>
+                <button class="tab-btn" data-category="special">Specialty Services</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Cards Grid -->
+    <section id="service-grid">
+        <div class="container">
+            <!-- Ozi Plan -->
+            <div class="service-category" id="ozi-services">
+                <h2 class="category-title">The Ozi Plan</h2>
+                <p class="category-description">All four services, one plan — from ₦52,000/month</p>
+                <p style="font-weight:600; font-size:1.1rem; color:var(--text-color); max-width:900px;">
+                    With our Ozi Service, you're granted effortless access to four premium home and business services — General Cleaning, Laundry, Errands, and Kitchen Operations — crafted to elevate the comfort and rhythm of your daily living. Our devoted and trained Associates are at your service from 9am to 5pm, with a brief one-hour break, ensuring your home or business receives the utmost care and attention. Experience a new standard of comfort, convenience, and refined home and business support.
+                </p>
+                <p style="margin-top:1rem;"><strong>Subscribe to any plan that best suits your lifestyle.</strong> Payment is monthly.</p>
+
+                <div class="pricing-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Plan</th>
+                                <th>Frequency</th>
+                                <th>Price (₦)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Economy</td><td>1 day / week · 4 days / month</td><td>52,000</td></tr>
+                            <tr><td>Essential</td><td>2 days / week · 8 days / month</td><td>104,000</td></tr>
+                            <tr><td>Standard</td><td>3 days / week · 12 days / month</td><td>156,000</td></tr>
+                            <tr><td>Premium</td><td>4 days / week · 16 days / month</td><td>208,000</td></tr>
+                            <tr><td>Business</td><td>5 days / week · 20 days / month</td><td>260,000</td></tr>
+                            <tr><td>Executive</td><td>6 days / week · 24 days / month</td><td>312,000</td></tr>
+                            <tr><td>Luxury</td><td>7 days / week · all days of the month</td><td>403,000</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="footnote">* Access to the service is from 9am–5pm daily. A specific convenient time can be arranged by emailing or calling us.</p>
+                </div>
+
+                <div style="background:var(--ivory); border:1px solid var(--border-color); border-radius:10px; padding:1.5rem 2rem; margin-top:1.5rem;">
+                    <h3 style="font-size:1.4rem; margin-bottom:0.4rem;">A Taste of Ozi</h3>
+                    <p style="margin-bottom:0;">Get a taste of Ozi for a day — book a private one-day experience. Time range: 9am–5pm or 12pm–6pm.</p>
+                </div>
+
+                <div class="cta-center" style="margin-top:2rem;">
+                    <a href="booking.html?service=ozi" class="cta-button primary">Subscribe to Ozi</a>
+                </div>
+            </div>
+
+            <!-- Deep Cleaning -->
+            <div class="service-category" id="deep-cleaning">
+                <h2 class="category-title">Deep Cleaning</h2>
+                <p class="category-description">One-time service, priced by bedroom count — from ₦90,000</p>
+                <p>A comprehensive floor-to-ceiling deep clean: moving furniture for access, interior windows, shelves, inside kitchen cabinets, fridge/freezer, oven, balcony and fans — plus an in-depth delivery of all standard cleaning tasks.</p>
+
+                <div class="pricing-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Bedrooms</th>
+                                <th>Price (₦)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>90,000</td></tr>
+                            <tr><td>2</td><td>100,000</td></tr>
+                            <tr><td>3</td><td>150,000</td></tr>
+                            <tr><td>4</td><td>180,000</td></tr>
+                            <tr><td>5</td><td>200,000</td></tr>
+                            <tr><td>6</td><td>230,000</td></tr>
+                            <tr><td>7</td><td>250,000</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="footnote">* Homes significantly larger than others of the same size, or bookings that run longer than estimated, may attract additional charges, which will be duly communicated.</p>
+                </div>
+
+                <div class="cta-center">
+                    <a href="booking.html?service=deep-clean&type=standard%20deep%20clean" class="cta-button primary">Book a Deep Clean</a>
+                </div>
+            </div>
+
+            <!-- Special Services -->
+            <div class="service-category" id="special-services">
+                <h2 class="category-title">Specialty Services</h2>
+                <p class="category-description">Custom quotes available</p>
+
+                <div class="services-grid">
+                    <div class="service-card special">
+                        <div class="service-icon"><i class="fas fa-truck-ramp-box"></i></div>
+                        <h3>Move-in / Move-out Cleaning</h3>
+                        <p>A thorough clean when moving in or out — priced within the deep cleaning range.</p>
+                        <a href="booking.html?service=specialty&type=move-in%2Fmove-out" class="cta-button secondary">Request a Quote</a>
+                    </div>
+
+                    <div class="service-card special">
+                        <div class="service-icon"><i class="fas fa-boxes-stacked"></i></div>
+                        <h3>Decluttering &amp; Organising</h3>
+                        <p>Sorting, boxing, and organising spaces for a calmer, more efficient environment.</p>
+                        <a href="booking.html?service=specialty&type=decluttering%2Forganising" class="cta-button secondary">Request a Quote</a>
+                    </div>
+
+                    <div class="service-card special">
+                        <div class="service-icon"><i class="fas fa-hard-hat"></i></div>
+                        <h3>Post-Construction Clean</h3>
+                        <p>Dust, debris, and window polish for newly built or renovated spaces.</p>
+                        <a href="booking.html?service=specialty&type=post%20construction%20clean" class="cta-button secondary">Request a Quote</a>
+                    </div>
+
+                    <div class="service-card special">
+                        <div class="service-icon"><i class="fas fa-house-chimney-window"></i></div>
+                        <h3>Airbnb / Short-let Cleaning</h3>
+                        <p>Turnover-ready cleaning for short-let and hospitality spaces.</p>
+                        <a href="booking.html?service=specialty&type=airbnb%20cleaning" class="cta-button secondary">Request a Quote</a>
+                    </div>
+
+                    <div class="service-card special">
+                        <div class="service-icon"><i class="fas fa-user-friends"></i></div>
+                        <h3>Elderly Care &amp; Childcare</h3>
+                        <p>Light caregiving, companionship, and activity support.</p>
+                        <a href="booking.html?service=specialty&type=care%20%26%20companionship" class="cta-button secondary">Request a Quote</a>
+                    </div>
+
+                    <div class="service-card special">
+                        <div class="service-icon"><i class="fas fa-couch"></i></div>
+                        <h3>Couch &amp; Rug Cleaning</h3>
+                        <p>Sofa, cushion, upholstery and rug detailing.</p>
+                        <a href="booking.html?service=specialty&type=couch%20%26%20rug%20cleaning" class="cta-button secondary">Request a Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ / Policy Section -->
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is the Ozi Plan?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>With our Ozi Service, you're granted effortless access to four premium home and business services — General Cleaning, Laundry, Errands, and Kitchen Operations — crafted to elevate the comfort and rhythm of your daily living. Our devoted and trained Associates are at your service from 9am to 5pm, with a brief one-hour break, ensuring your home or business receives the utmost care and attention.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I make payment?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can make a payment easily through the booking link provided to you. We also accept bank transfers and mobile payments. For regular customers, we offer convenient monthly billing options.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I schedule a service with Zigam?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Simply use the booking page on our website or give us a call. We will work with you to determine the best service plan for your needs and schedule a convenient time for our team to come to you.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I customise my cleaning service?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. Every home or business is unique, and we are happy to customise our services to meet your specific requirements. Just let us know what you need, and we'll create a plan that suits your needs and budget. Send an email today to <a href="mailto:Zigam2026@gmail.com">Zigam2026@gmail.com</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is the Assurance?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The Assurance is a form of insurance against theft and damage caused by an associate. To access the Assurance, simply make a one-time payment during the booking process.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Who is a Professional Organiser?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A Professional Organiser is someone who helps you overcome clutter and disorganisation to make your life less stressful and your space more efficient and simple.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What areas do you serve?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We are starting with Enugu and Lagos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-help-text">
+                    <p>Still need help? <a href="contact.html">Contact our team</a> for personalized assistance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call-to-Action -->
+    <section id="service-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Need help choosing the right service or booking?</h2>
+                <p>We're happy to guide you. Share your details and our team will reach out.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-button primary">Contact Us</a>
+                    <a href="booking.html" class="cta-button secondary">Book a Free Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="locations">
+                    <div class="location">
+                        <h3>Enugu</h3>
+                        <p>Number 4 Ridge Way Road,<br>GRA, Enugu.</p>
+                    </div>
+                    <div class="location">
+                        <h3>Lagos</h3>
+                        <p>Block 4, House 7, Bayview Estate,<br>Dupe Oguntade Street, Ikate, Lekki, Lagos State.</p>
+                    </div>
+                </div>
+                <div class="contact">
+                    <h3>Contact Us</h3>
+                    <p>Phone: <a href="tel:+2347053728258">+234 705 372 8258</a></p>
+                    <p>Email: <a href="mailto:Zigam2026@gmail.com">Zigam2026@gmail.com</a></p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="terms.html">Terms</a>
+                    <a href="services-description.html">Service Details</a>
+                    <a href="booking.html">Book</a>
+                    <a href="about.html#careers-block">Careers</a>
+                </div>
+                <p class="copyright">© 2026 Zigam · RC No. 9288075 · All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/services.js"></script>
+</body>
+</html>

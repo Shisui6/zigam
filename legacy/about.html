@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - ZIGAM</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
 </head>
@@ -14,11 +16,14 @@
     <header id="header">
         <div class="container">
             <div class="logo">
-                <a href="home.html">ZIGAM</a>
+                <a href="index.html" aria-label="Zigam home">
+                    <img src="images/zigam-logo.png" alt="ZIGAM"
+                         onerror="this.style.display='none'; this.insertAdjacentText('afterend','ZIGAM');">
+                </a>
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="home.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="about.html" class="active">About</a></li>
                     <li><a href="booking.html">Book</a></li>
@@ -39,7 +44,7 @@
     <section id="about-hero">
         <div class="container">
             <h1>Meet ZIGAM</h1>
-            <p class="subtitle">We're building a modern, dignified ecosystem for homemaking — for homes and for the youth who power them.</p>
+            <p class="subtitle">We are redefining modern living by empowering our clients to achieve their highest level of productivity.</p>
         </div>
     </section>
 
@@ -49,11 +54,11 @@
             <div class="story-content">
                 <div class="story-text">
                     <h2>Our Story</h2>
-                    <p>ZIGAM was created to bridge a crucial gap: the rising demand for trusted domestic help — and the untapped potential of Nigeria's vibrant youth looking for flexible, respectable work.</p>
-                    <p>We modernize homemaking by offering homes peace of mind and offering workers dignity, training, and purpose.</p>
+                    <p>ZIGAM was created to bridge a critical gap between the increasing demand for reliable home and workplace support and the immense potential of Nigeria's dynamic workforce.</p>
+                    <p>We are redefining homemaking through technology, world-class training, and trusted service — giving our clients the freedom to focus on what matters most, while creating dignified, flexible, and rewarding opportunities for our service professionals.</p>
                 </div>
                 <div class="story-image">
-                    <img src="images/about/about-worker.png" alt="Young professional cleaner in training">
+                    <img src="images/about/about-worker.png" alt="Professional associate in training">
                 </div>
             </div>
         </div>
@@ -68,23 +73,35 @@
                 <div class="vmv-card">
                     <h3>Vision</h3>
                     <div class="vmv-content">
-                        <p>To bridge the gap between the growing need for reliable support in households and the vast potential of youths and young adults, by creating meaningful employment opportunities that empower them to serve with purpose and dignity.</p>
+                        <p>To set the global standard for excellent home and workplace support — connecting discerning households and businesses with elite service professionals who operate with distinction, mastery, and purpose.</p>
                     </div>
                 </div>
 
                 <div class="vmv-card">
                     <h3>Mission</h3>
                     <div class="vmv-content">
-                        <p>To transform the domestic services sector, creating a modern, safe, and reliable ecosystem that ensures fair opportunities for employees and dependable solutions for employers.</p>
+                        <p>To be Africa's most trusted support services ecosystem, redefining modern living by giving homes and businesses seamless access to exceptional support while elevating the dignity and value of service.</p>
                     </div>
                 </div>
 
                 <div class="vmv-card">
-                    <h3>Values</h3>
-                    <div class="vmv-content values">
-                        <p>Integrity • Proactivity • Empathy • Diligence</p>
+                    <h3>Our Model</h3>
+                    <div class="vmv-content">
+                        <p>Our associates are independent contractors — skilled professionals we vet and train — serving clients across homes and businesses anywhere you have a household.</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- Values -->
+            <h2 class="section-title" style="margin-top:4rem;">Our Values</h2>
+            <div class="vmv-grid">
+                <div class="vmv-card"><h3 style="font-size:1.4rem;">Mastery</h3><p>Good is not enough. We strive for mastery in our training and perfection in our service delivery.</p></div>
+                <div class="vmv-card"><h3 style="font-size:1.4rem;">Integrity</h3><p>We do what is right, even when no one is watching. We operate with total transparency and honesty — it is the currency of the trust our clients place in us.</p></div>
+                <div class="vmv-card"><h3 style="font-size:1.4rem;">Empathy</h3><p>We serve with care, respect, and genuine understanding of our clients' needs.</p></div>
+                <div class="vmv-card"><h3 style="font-size:1.4rem;">Ownership &amp; Proactivity</h3><p>We take initiative, act responsibly, and follow through on our commitments.</p></div>
+                <div class="vmv-card"><h3 style="font-size:1.4rem;">Dependability</h3><p>We deliver consistently and honor every commitment.</p></div>
+                <div class="vmv-card"><h3 style="font-size:1.4rem;">Precision</h3><p>We value the details. Our service is measured by the accuracy and quality of our execution.</p></div>
+                <div class="vmv-card"><h3 style="font-size:1.4rem;">Discretion</h3><p>We respect the privacy of the environments we enter. Professionalism is defined by our presence being felt, not heard.</p></div>
             </div>
         </div>
     </section>
@@ -101,7 +118,7 @@
                     </div>
                     <h3>Loretta Udeh</h3>
                     <h4>Co-founder / CEO</h4>
-                    <p>Passionate about youth development and service excellence.</p>
+                    <p>Passionate about workforce development and service excellence.</p>
                 </div>
 
                 <div class="team-card">
@@ -125,18 +142,18 @@
 
                 <div class="careers-details">
                     <p>As a ZIGAM Associate, you'll receive professional training, supervision, and the dignity of formal work — on a schedule that respects your time.</p>
-                    <p>We're building a future where domestic support is safe, respected, and rewarding for all.</p>
+                    <p>We're building a future where home and workplace support is safe, respected, and rewarding for all.</p>
 
                     <div class="roles">
                         <h4>Open Positions</h4>
                         <ul>
-                            <li><span class="role-badge available">Associates (Domestic Support)</span></li>
+                            <li><span class="role-badge available">Associate</span></li>
                             <li><span class="role-badge coming-soon">Supervisors (Coming soon)</span></li>
                             <li><span class="role-badge coming-soon">Admin Team (Coming soon)</span></li>
                         </ul>
                     </div>
 
-                    <a href="https://forms.google.com" class="cta-button primary" target="_blank">Apply Now</a>
+                    <a href="https://forms.gle/Vz3sJi5TgAceiSSW7" class="cta-button primary" target="_blank" rel="noopener">Apply Now</a>
                 </div>
             </div>
         </div>
@@ -174,7 +191,7 @@
                         <span class="faq-toggle"><i class="fas fa-plus"></i></span>
                     </div>
                     <div class="faq-answer">
-                        <p>We offer flexible part-time work that fits your school or family life.</p>
+                        <p>We offer flexible work that fits your school or family life.</p>
                     </div>
                 </div>
 
@@ -206,12 +223,12 @@
         <div class="container">
             <div class="dual-cta-content">
                 <div class="cta-block">
-                    <h3>Need help at home?</h3>
+                    <h3>Need help at home or work?</h3>
                     <a href="booking.html" class="cta-button primary">Book a Service</a>
                 </div>
                 <div class="cta-block">
                     <h3>Want to work with us?</h3>
-                    <a href="https://forms.google.com" class="cta-button secondary" target="_blank">Apply Now</a>
+                    <a href="https://forms.gle/Vz3sJi5TgAceiSSW7" class="cta-button secondary" target="_blank" rel="noopener">Apply Now</a>
                 </div>
             </div>
         </div>
@@ -224,32 +241,32 @@
                 <div class="locations">
                     <div class="location">
                         <h3>Enugu</h3>
-                        <p>123 Independence Avenue<br>Enugu, Nigeria</p>
+                        <p>Number 4 Ridge Way Road,<br>GRA, Enugu.</p>
                     </div>
                     <div class="location">
                         <h3>Lagos</h3>
-                        <p>456 Victoria Island<br>Lagos, Nigeria</p>
+                        <p>Block 4, House 7, Bayview Estate,<br>Dupe Oguntade Street, Ikate, Lekki, Lagos State.</p>
                     </div>
                 </div>
                 <div class="contact">
                     <h3>Contact Us</h3>
-                    <p>Phone: +234 123 456 7890</p>
-                    <p>Email: info@zigam.com</p>
+                    <p>Phone: <a href="tel:+2347053728258">+234 705 372 8258</a></p>
+                    <p>Email: <a href="mailto:Zigam2026@gmail.com">Zigam2026@gmail.com</a></p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <div class="footer-links">
-                    <a href="#">Terms</a>
-                    <a href="#">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="services-description.html">Service Details</a>
                     <a href="booking.html">Book</a>
-                    <a href="#">Careers</a>
+                    <a href="about.html#careers-block">Careers</a>
                 </div>
-                <p class="copyright">© 2023 Zigam. All rights reserved.</p>
+                <p class="copyright">© 2026 Zigam · RC No. 9288075 · All rights reserved.</p>
             </div>
         </div>
     </footer>
