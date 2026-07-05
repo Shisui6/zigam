@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import Countdown from "@/components/Countdown";
+import Logo from "@/components/Logo";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -18,6 +19,12 @@ const oziBits = [
 export default function Launch() {
   return (
     <>
+      {/* Minimal top bar — logo only, no navigation */}
+      <header className="launch-topbar">
+        <Logo height={64} />
+        <span className="launch-rc">{site.rc}</span>
+      </header>
+
       <section className="launch-hero">
         <div className="container-narrow">
           <Reveal as="p" className="eyebrow">We are making the art of effortless living possible</Reveal>
@@ -83,6 +90,42 @@ export default function Launch() {
           </Reveal>
         </div>
       </section>
+
+      {/* Join the workforce */}
+      <section className="block cta-band">
+        <div className="container">
+          <Reveal>
+            <p className="eyebrow" style={{ color: "var(--white)", fontWeight: 700 }}>JOIN THE ZIGAM WORKFORCE</p>
+            <h2 style={{ color: "var(--white)" }}>Meaningful work that fits your life</h2>
+            <p style={{ maxWidth: 680, margin: "0.6rem auto 0.4rem" }}>
+              Looking for meaningful work that fits into your lifestyle, routine and schedule? We&apos;re hiring young adults in Enugu and Lagos.
+            </p>
+            <p style={{ maxWidth: 680, margin: "0 auto 1.6rem" }}>
+              As a Zigam Associate, you&apos;ll receive professional training, supervision, and the dignity of formal work — on a schedule that respects your time. Open position: <strong>Associate</strong>.
+            </p>
+            <a href={site.workforceForm} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
+              <i className="fas fa-user-plus" /> Apply to Join
+            </a>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Slim launch footer — contact only, no site navigation */}
+      <footer className="launch-footer">
+        <div className="container">
+          <p>
+            <a href={site.phoneHref}><i className="fas fa-phone" /> {site.phone}</a>
+            <span className="sep">·</span>
+            <a href={`mailto:${site.email}`}><i className="fas fa-envelope" /> {site.email}</a>
+          </p>
+          <div className="launch-socials">
+            <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram" /></a>
+            <a href={site.socials.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i className="fab fa-facebook-f" /></a>
+            <a href={site.socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i className="fab fa-linkedin-in" /></a>
+          </div>
+          <p className="launch-copy">© {new Date().getFullYear()} Zigam · {site.rc} · Enugu &amp; Lagos</p>
+        </div>
+      </footer>
     </>
   );
 }
