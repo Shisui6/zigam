@@ -374,10 +374,40 @@ section { position: relative; }
 .launch-footer .launch-copy { font-size: 0.78rem; color: rgba(243,237,225,0.5); margin-top: 0.5rem; }
 @media (max-width: 560px) { .launch-footer .sep { display: block; height: 0; overflow: hidden; margin: 0.3rem 0; } }
 
-.launch-hero { min-height: 100vh; display: flex; align-items: center; text-align: center; padding: calc(var(--header-h) + 3rem) 0 4rem;
+.launch-hero { min-height: 100vh; display: flex; align-items: center; text-align: center; padding: calc(var(--header-h) + 4rem) 0 4rem;
     background: radial-gradient(circle at 80% 10%, rgba(194,161,77,0.12), transparent 45%), linear-gradient(160deg, var(--ivory), var(--cream) 60%, var(--cream-2)); }
 .launch-hero h1 .accent { color: var(--gold-deep); font-style: italic; }
 .coming-soon { font-family: var(--font-serif); font-style: italic; color: var(--gold-deep); font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: 0.05em; margin-bottom: 1.2rem; }
+
+/* "Launching 2026" — refined, no countdown */
+.launching-line { font-family: var(--font-serif); font-size: clamp(1.6rem, 4vw, 2.4rem); color: var(--charcoal); letter-spacing: 0.04em; margin: 2rem 0 0.4rem; }
+.launching-line span { color: var(--gold-deep); font-weight: 700; }
+
+/* Founder section */
+.founder-section { background: var(--ivory); }
+.founder-wrap { display: grid; grid-template-columns: 320px 1fr; gap: 3.5rem; align-items: center; max-width: 980px; margin: 0 auto; }
+.portrait { width: 320px; height: 400px; object-fit: cover; border-radius: 16px;
+    box-shadow: var(--shadow-lg); border: 1px solid var(--border);
+    outline: 6px solid rgba(194,161,77,0.14); outline-offset: 8px; }
+.portrait-fallback { display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--charcoal), var(--charcoal-2)); color: var(--gold-soft);
+    font-family: var(--font-serif); font-size: 5rem; font-weight: 700; letter-spacing: 0.05em; }
+.founder-copy h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); }
+.founder-short { color: var(--gold-deep); font-style: italic; }
+.founder-title { text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.78rem; font-weight: 600; color: var(--muted); margin-top: 0.3rem; }
+.founder-copy p:last-child { color: var(--muted); font-weight: 300; }
+@media (max-width: 780px) {
+    .founder-wrap { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 2rem; }
+    .founder-copy .rule { margin-left: auto; margin-right: auto; }
+}
+
+/* Open Positions */
+.open-positions { margin: 0 auto 2rem; max-width: 420px; }
+.op-label { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 0.9rem; }
+.op-card { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.28); border-radius: 12px;
+    padding: 1.1rem 1.6rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; backdrop-filter: blur(4px); }
+.op-role { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--white); }
+.op-loc { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.85); }
 
 /* Legal / long-form content */
 .prose h2 { font-size: 1.6rem; margin: 2.2rem 0 0.7rem; color: var(--gold-deep); }

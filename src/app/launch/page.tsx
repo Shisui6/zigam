@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
-import Countdown from "@/components/Countdown";
 import Logo from "@/components/Logo";
+import Portrait from "@/components/Portrait";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function Launch() {
     <>
       {/* Minimal top bar — logo only, no navigation */}
       <header className="launch-topbar">
-        <Logo height={64} />
+        <Logo height={96} />
         <span className="launch-rc">{site.rc}</span>
       </header>
 
@@ -37,9 +37,11 @@ export default function Launch() {
               Connecting discerning homes and businesses with elite, trusted service professionals — built on mastery, dignity, and trust.
             </span>
           </Reveal>
-          <Reveal delay={220}><Countdown date={site.launchDate} /></Reveal>
+          <Reveal delay={220}>
+            <p className="launching-line">Launching <span>2026</span></p>
+          </Reveal>
           <Reveal as="p" delay={260} className="lead" >
-            <span style={{ fontSize: "0.95rem" }}>Launching mid-July 2026 · Enugu &amp; Lagos</span>
+            <span style={{ fontSize: "0.95rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Enugu &amp; Lagos</span>
           </Reveal>
           <Reveal className="hero-ctas" delay={300} >
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", width: "100%" }}>
@@ -77,6 +79,26 @@ export default function Launch() {
         </div>
       </section>
 
+      {/* Meet the Founder */}
+      <section className="block founder-section">
+        <div className="container">
+          <Reveal className="founder-wrap">
+            <Portrait src="/images/founder-kaeto.jpeg" alt="Kaetochukwu Udeh, Founder of Zigam" initials="KU" />
+            <div className="founder-copy">
+              <p className="eyebrow">Meet the Founder</p>
+              <h2>Kaetochukwu Udeh <span className="founder-short">(Kaeto)</span></h2>
+              <p className="founder-title">Founder</p>
+              <hr className="rule" />
+              <p>
+                Zigam was born from a simple conviction: that exceptional home and workplace support should be
+                effortless, dignified, and built on trust. Kaeto leads that vision — pairing world-class training with
+                genuine care to redefine modern living across Africa.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="block founders-callout">
         <div className="container">
           <Reveal className="founders-card">
@@ -100,9 +122,16 @@ export default function Launch() {
             <p style={{ maxWidth: 680, margin: "0.6rem auto 0.4rem" }}>
               Looking for meaningful work that fits into your lifestyle, routine and schedule? We&apos;re hiring young adults in Enugu and Lagos.
             </p>
-            <p style={{ maxWidth: 680, margin: "0 auto 1.6rem" }}>
-              As a Zigam Associate, you&apos;ll receive professional training, supervision, and the dignity of formal work — on a schedule that respects your time. Open position: <strong>Associate</strong>.
+            <p style={{ maxWidth: 680, margin: "0 auto 1.8rem" }}>
+              As a Zigam Associate, you&apos;ll receive professional training, supervision, and the dignity of formal work — on a schedule that respects your time.
             </p>
+            <div className="open-positions">
+              <p className="op-label">Open Positions</p>
+              <div className="op-card">
+                <span className="op-role">Associate</span>
+                <span className="op-loc">Enugu &amp; Lagos</span>
+              </div>
+            </div>
             <a href={site.workforceForm} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
               <i className="fas fa-user-plus" /> Apply to Join
             </a>
