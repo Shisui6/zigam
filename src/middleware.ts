@@ -1,24 +1,21 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 // Pre-launch "coming soon" gate.
-// When NEXT_PUBLIC_COMING_SOON === "true" and we're before the launch date,
-// all visitors are redirected to /launch. Set the flag to "false" (or let the
-// launch date pass) to open the full site.
+// Controlled ONLY by the NEXT_PUBLIC_COMING_SOON flag:
+//   "true"  -> gate is ON, everyone is redirected to /launch.
+//   anything else / unset -> gate is OFF, the full site is live.
+// When you're ready to launch, set the flag to "false" and redeploy.
 //
 // PREVIEW BYPASS (for you & your team):
 //   Visit  https://your-site/?preview=YOUR_TOKEN  once. This drops a cookie
 //   that lets you browse the whole site while the public still sees /launch.
 //   Set PREVIEW_TOKEN in your env to something private; defaults to "zigam-preview".
-const LAUNCH_DATE = "2026-07-15T09:00:00+01:00";
 const PREVIEW_TOKEN = process.env.PREVIEW_TOKEN || "zigam-preview";
 const PREVIEW_COOKIE = "zigam_preview";
 
 export function middleware(req: NextRequest) {
   const comingSoon = process.env.NEXT_PUBLIC_COMING_SOON === "true";
   if (!comingSoon) return NextResponse.next();
-
-  const launched = Date.now() >= new Date(LAUNCH_DATE).getTime();
-  if (launched) return NextResponse.next();
 
   const { pathname, searchParams } = req.nextUrl;
 
