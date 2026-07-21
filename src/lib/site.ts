@@ -9,7 +9,7 @@ export const site = {
   email: "Zigam2026@gmail.com",
   // Google Forms
   foundersForm: "https://forms.gle/ZKiv88SXvTrNgeNM8", // launch list / Founder's Access
-  workforceForm: "https://forms.gle/Vz3sJi5TgAceiSSW7", // job application
+  workforceForm: "https://forms.gle/jZR4aMegDtSm29XKA", // job application
   // Launch countdown target (West Africa Time, UTC+1)
   launchDate: "2026-07-15T09:00:00+01:00",
   socials: {
