@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import { site, oziServices } from "@/lib/site";
+import Faq from "@/components/Faq";
+import { site, oziServices, workforceFaq } from "@/lib/site";
 
 const iconMap: Record<string, string> = {
   broom: "fa-broom",
@@ -21,8 +22,8 @@ export default function Home() {
               Your Home, <span className="accent">Our Willing Hands.</span>
             </Reveal>
             <Reveal as="p" className="lead" delay={160}>
-              We are building the largest ecosystem of homemaking professionals and the people who need them —
-              connecting discerning homes and businesses with elite, trusted service professionals.
+              Be part of the largest ecosystem of homemaking professionals and the homes and businesses they
+              support — connecting discerning homes and businesses with elite, trusted service professionals.
             </Reveal>
             <Reveal className="hero-ctas" delay={240}>
               <Link href="/booking" className="btn btn-gold">Book a Service</Link>
@@ -31,9 +32,9 @@ export default function Home() {
           </div>
           <Reveal className="hero-figure" delay={200}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/hero-image.png" alt="A professional associate in a beautifully kept home" />
+            <img src="/images/hero-associate-uniform.png" alt="A Zigam associate in uniform" />
             <div className="badge">
-              <strong>Ozi</strong>
+              <strong>The Ozi Experience</strong>
               <span>Four services, one experience</span>
             </div>
           </Reveal>
@@ -48,13 +49,13 @@ export default function Home() {
             <h2>The Ozi Experience</h2>
             <p>
               A signature four-in-one support solution designed for modern homes and businesses. One booking or
-              subscription, one trained associate, four essential services, delivered across an eight-hour day.
+              membership, one trained associate, four essential services, delivered across an eight-hour day.
             </p>
           </Reveal>
 
           <Reveal className="ozi-umbrella">
             <span className="ozi-chip">OZI</span>
-            <p className="ozi-chip-sub">The all-in-one plan</p>
+            <p className="ozi-chip-sub">The all in one membership</p>
             <div className="ozi-arrow"><i className="fas fa-angle-down" /></div>
           </Reveal>
 
@@ -74,7 +75,7 @@ export default function Home() {
       <section className="section-dark block">
         <div className="container">
           <div className="stat-band">
-            <Reveal className="stat"><span className="big">1</span><span className="cap">Booking / Subscription</span></Reveal>
+            <Reveal className="stat"><span className="big">1</span><span className="cap">Booking / Membership</span></Reveal>
             <Reveal className="stat" delay={80}><span className="big">1</span><span className="cap">Trained Associate</span></Reveal>
             <Reveal className="stat" delay={160}><span className="big">4</span><span className="cap">Essential Services</span></Reveal>
             <Reveal className="stat" delay={240}><span className="big">8</span><span className="cap">Hours of Endless Possibilities</span></Reveal>
@@ -115,13 +116,13 @@ export default function Home() {
         <div className="container">
           <Reveal className="section-head">
             <p className="eyebrow">Our pricing</p>
-            <h2>Simple, transparent plans</h2>
+            <h2>Simple and transparent</h2>
           </Reveal>
           <div className="grid grid-3">
             <Reveal className="card price-card feature">
-              <h3>Ozi Plan</h3>
+              <h3>Ozi Membership</h3>
               <div className="amount">₦52,000<span style={{ fontSize: "0.9rem" }}>/mo</span></div>
-              <p>All four services in one plan — from ₦13,000 per day.</p>
+              <p>All four services in one membership — from ₦13,000 per day.</p>
             </Reveal>
             <Reveal className="card price-card" delay={100}>
               <h3>Deep Cleaning</h3>
@@ -129,9 +130,9 @@ export default function Home() {
               <p>A thorough, in-depth clean for every area of your space.</p>
             </Reveal>
             <Reveal className="card price-card" delay={200}>
-              <h3>Specialty</h3>
+              <h3>Ozi Plus</h3>
               <div className="amount">Custom</div>
-              <p>Move-in/out, post-construction, upholstery and more.</p>
+              <p>Move-in/out, private chef, gardening, fumigation and more.</p>
             </Reveal>
           </div>
           <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
@@ -140,18 +141,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOUNDERS */}
-      <section className="block founders-callout">
-        <div className="container">
-          <Reveal className="founders-card">
-            <p className="eyebrow">By invitation</p>
-            <h2>Request Founder&apos;s Access</h2>
-            <hr className="rule" />
-            <p>Join the private launch list reserved for those who want first access to Zigam.</p>
-            <a href={site.foundersForm} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
-              <i className="fas fa-key" /> Request Founder&apos;s Access
-            </a>
+      {/* WORKFORCE FAQ (replaces Founder's Access) */}
+      <section className="block">
+        <div className="container-narrow">
+          <Reveal className="section-head">
+            <p className="eyebrow">Join the Zigam workforce</p>
+            <h2>Questions about working with us</h2>
           </Reveal>
+          <Reveal><Faq items={workforceFaq.map((f) => ({ q: f.q, a: f.a }))} /></Reveal>
         </div>
       </section>
 
@@ -162,7 +159,7 @@ export default function Home() {
             <h2>Looking for flexible, meaningful work?</h2>
             <p>Join the Zigam workforce. We offer professional training, supervision, and the dignity of formal work — on a schedule that respects your time.</p>
             <a href={site.workforceForm} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-              <i className="fas fa-user-plus" /> Apply to Join
+              <i className="fas fa-user-plus" /> Apply Now
             </a>
           </Reveal>
         </div>

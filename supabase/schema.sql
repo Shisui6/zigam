@@ -27,7 +27,8 @@ create table if not exists public.bookings (
   booking_type        text not null check (booking_type in ('one_time','subscription')),
   location            text not null check (location in ('enugu','lagos')),
   service             text,               -- one_time service id
-  ozi_plan            text,               -- subscription plan name
+  ozi_plan            text,               -- Ozi Membership tier name
+  priority_service    text,               -- which of the 4 Ozi services is the client's priority
   bedrooms            text,               -- for deep cleaning / move in-out
   -- when
   service_date        date,

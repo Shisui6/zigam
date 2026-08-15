@@ -7,6 +7,7 @@ export const dynamic = "force-dynamic";
 
 type Payload = PriceInput & {
   location: Location;
+  priority?: string;
   name: string;
   email: string;
   phone?: string;
@@ -63,6 +64,7 @@ export async function POST(req: Request) {
         location: body.location,
         service: body.service ?? null,
         ozi_plan: body.oziPlan ?? null,
+        priority_service: body.priority ?? null,
         bedrooms: body.bedrooms ?? null,
         service_date: body.date ?? null,
         time_slot: body.timeSlot ?? null,

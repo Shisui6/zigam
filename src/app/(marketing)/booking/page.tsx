@@ -1,9 +1,10 @@
 "use client";
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { oziTiers, deepCleaning } from "@/lib/site";
+import { oziTiers, deepCleaning, oziServices } from "@/lib/site";
 import {
   computePrice,
+  assuranceFor,
   formatNaira,
   oneTimeServices,
   type BookingType,
@@ -26,6 +27,7 @@ export default function Booking() {
   const [service, setService] = useState<OneTimeService | "">("");
   const [bedrooms, setBedrooms] = useState("");
   const [oziPlan, setOziPlan] = useState("");
+  const [priority, setPriority] = useState("");
   const [upfront6Months, setUpfront6Months] = useState(false);
   const [date, setDate] = useState("");
   const [timeSlot, setTimeSlot] = useState<TimeSlot>("standard");
@@ -39,7 +41,7 @@ export default function Booking() {
   const [phone, setPhone] = useState("");
   const [terms, setTerms] = useState(false);
 
-  const needsBedrooms = service === "deep_cleaning" || service === "move_in_out";
+  const needsBedrooms = Boolean(oneTimeServices.find((s) => s.id === service)?.bedrooms);
 
   const price = useMemo(
     () =>
@@ -56,21 +58,60 @@ export default function Booking() {
     [type, oziPlan, service, bedrooms, timeSlot, date, assurance, upfront6Months]
   );
 
-  function canProceed() {
-    if (step === 0) {
-      if (!type || !location) return false;
-      if (type === "subscription") return Boolean(oziPlan);
-      if (!service) return false;
-      if (needsBedrooms && !bedrooms) return false;
-      return true;
+  // What the Assurance would cost/cover for the current selection (shown on the checkbox)
+  const assuranceQuote = useMemo(
+    () =>
+      assuranceFor(
+        {
+          type: (type || "one_time") as BookingType,
+          service: (service || undefined) as OneTimeService | undefined,
+        },
+        price.base
+      ),
+    [type, service, price.base]
+  );
+
+  /** Required fields per step. Returns a list of what's still missing. */
+  function missingFor(s: number): string[] {
+    const missing: string[] = [];
+    if (s === 0) {
+      if (!type) missing.push("what you need");
+      if (!location) missing.push("a location");
+      if (type === "subscription" && !oziPlan) missing.push("an Ozi Membership tier");
+      if (type === "subscription" && !priority) missing.push("your priority service");
+      if (type === "one_time" && !service) missing.push("a service");
+      if (needsBedrooms && !bedrooms) missing.push("your home size");
     }
-    return true;
+    if (s === 1) {
+      if (!date) missing.push("a preferred date");
+      if (!address.trim()) missing.push("the service address");
+      if (!accessInstructions.trim()) missing.push("access instructions");
+    }
+    if (s === 2) {
+      if (!name.trim()) missing.push("your full name");
+      if (!email.trim()) missing.push("your email address");
+      if (!phone.trim()) missing.push("your phone number");
+      if (!terms) missing.push("agreement to the Terms of Use");
+    }
+    return missing;
+  }
+
+  const canProceed = () => missingFor(step).length === 0;
+
+  function goNext() {
+    const missing = missingFor(step);
+    if (missing.length) {
+      setError(`Please provide ${missing.join(", ")}.`);
+      return;
+    }
+    setError(null);
+    setStep((s) => s + 1);
   }
 
   async function submit() {
+    const missing = missingFor(2);
+    if (missing.length) return setError(`Please provide ${missing.join(", ")}.`);
     setError(null);
-    if (!name || !email) return setError("Please enter your name and email.");
-    if (!terms) return setError("Please accept the Terms of Use to continue.");
     setSubmitting(true);
     try {
       const res = await fetch("/api/bookings", {
@@ -81,6 +122,7 @@ export default function Booking() {
           location,
           service: service || undefined,
           oziPlan: oziPlan || undefined,
+          priority: priority || undefined,
           bedrooms: bedrooms || undefined,
           date: date || undefined,
           timeSlot,
@@ -141,7 +183,7 @@ export default function Booking() {
       <section className="page-hero" style={{ paddingBottom: "2rem" }}>
         <div className="container">
           <h1>Book a Service</h1>
-          <p>Choose your plan, tell us the details, and pay securely — all in a few steps.</p>
+          <p>Choose your membership or service, tell us the details, and pay securely — all in a few steps.</p>
         </div>
       </section>
 
@@ -164,8 +206,8 @@ export default function Booking() {
                 <h3 style={{ marginBottom: "0.8rem" }}>What do you need?</h3>
                 <div className="choice-grid">
                   <button className={`choice${type === "subscription" ? " selected" : ""}`} onClick={() => setType("subscription")}>
-                    <span className="c-title">Ozi Subscription</span>
-                    <span className="c-sub">All four services, monthly plan</span>
+                    <span className="c-title">Ozi Membership</span>
+                    <span className="c-sub">All four services, monthly membership</span>
                   </button>
                   <button className={`choice${type === "one_time" ? " selected" : ""}`} onClick={() => setType("one_time")}>
                     <span className="c-title">One-time Service</span>
@@ -184,13 +226,26 @@ export default function Booking() {
 
                 {type === "subscription" && (
                   <>
-                    <h3 style={{ margin: "1.6rem 0 0.8rem" }}>Choose your Ozi plan</h3>
+                    <h3 style={{ margin: "1.6rem 0 0.8rem" }}>Choose your Ozi Membership</h3>
                     <div className="choice-grid">
                       {oziTiers.map((t) => (
                         <button key={t.plan} className={`choice${oziPlan === t.plan ? " selected" : ""}`} onClick={() => setOziPlan(t.plan)}>
                           <span className="c-title">{t.plan}</span>
                           <span className="c-sub">{t.freq}</span>
                           <span className="c-price">{formatNaira(Number(t.price.replace(/,/g, "")))}/mo</span>
+                        </button>
+                      ))}
+                    </div>
+
+                    <h3 style={{ margin: "1.6rem 0 0.4rem" }}>Which service is your priority?</h3>
+                    <p style={{ color: "var(--muted)", fontSize: "0.9rem", marginBottom: "0.8rem" }}>
+                      The Ozi Membership is all-in-one — your Associate covers all four. Tell us which matters most so we
+                      brief them accordingly.
+                    </p>
+                    <div className="choice-grid">
+                      {oziServices.map((s) => (
+                        <button key={s.title} className={`choice${priority === s.title ? " selected" : ""}`} onClick={() => setPriority(s.title)}>
+                          <span className="c-title">{s.title}</span>
                         </button>
                       ))}
                     </div>
@@ -259,7 +314,12 @@ export default function Booking() {
                 </div>
                 <div className="check-row">
                   <input id="assurance" type="checkbox" checked={assurance} onChange={(e) => setAssurance(e.target.checked)} />
-                  <label htmlFor="assurance">Add the <strong>Assurance</strong> — protection against theft or damage by an associate ({formatNaira(price.assurance || 5000)}).</label>
+                  <label htmlFor="assurance">
+                    Add the <strong>Assurance</strong> — protection against theft or damage by an associate
+                    {assuranceQuote.fee > 0 && (
+                      <> ({formatNaira(assuranceQuote.fee)}, covers up to {formatNaira(assuranceQuote.coverage)})</>
+                    )}.
+                  </label>
                 </div>
                 {type === "subscription" && (
                   <div className="check-row">
@@ -292,7 +352,7 @@ export default function Booking() {
                 <button className="btn btn-outline" onClick={() => setStep((s) => s - 1)}>Back</button>
               ) : <span />}
               {step < STEPS.length - 1 ? (
-                <button className="btn btn-gold" disabled={!canProceed()} onClick={() => setStep((s) => s + 1)}>Continue</button>
+                <button className="btn btn-gold" disabled={!canProceed()} onClick={goNext}>Continue</button>
               ) : (
                 <button className="btn btn-gold" disabled={submitting} onClick={submit}>
                   {submitting ? "Processing…" : price.isQuote ? "Request Quote" : `Pay ${formatNaira(price.total)}`}
@@ -304,9 +364,10 @@ export default function Booking() {
           {/* Summary */}
           <aside className="summary-card">
             <h3>Summary</h3>
-            <div className="summary-row"><span>Type</span><span>{type === "subscription" ? "Ozi Subscription" : type === "one_time" ? "One-time" : "—"}</span></div>
+            <div className="summary-row"><span>Type</span><span>{type === "subscription" ? "Ozi Membership" : type === "one_time" ? "One-time" : "—"}</span></div>
             <div className="summary-row"><span>Location</span><span style={{ textTransform: "capitalize" }}>{location || "—"}</span></div>
-            {type === "subscription" && <div className="summary-row"><span>Plan</span><span>{oziPlan || "—"}</span></div>}
+            {type === "subscription" && <div className="summary-row"><span>Membership</span><span>{oziPlan || "—"}</span></div>}
+            {type === "subscription" && <div className="summary-row"><span>Priority</span><span>{priority || "—"}</span></div>}
             {type === "one_time" && <div className="summary-row"><span>Service</span><span>{oneTimeServices.find((s) => s.id === service)?.label || "—"}</span></div>}
             {needsBedrooms && <div className="summary-row"><span>Home size</span><span>{bedrooms || "—"}</span></div>}
             {!price.isQuote && price.base > 0 && (
@@ -315,7 +376,12 @@ export default function Booking() {
                 {price.surcharges.map((s) => (
                   <div className="summary-row" key={s.label}><span>{s.label}</span><span>{formatNaira(s.amount)}</span></div>
                 ))}
-                {price.assurance > 0 && <div className="summary-row"><span>Assurance</span><span>{formatNaira(price.assurance)}</span></div>}
+                {price.assurance > 0 && (
+                  <div className="summary-row">
+                    <span>Assurance <small style={{ opacity: 0.75 }}>(covers {formatNaira(price.assuranceCoverage)})</small></span>
+                    <span>{formatNaira(price.assurance)}</span>
+                  </div>
+                )}
                 {price.discount > 0 && <div className="summary-row"><span>Upfront discount</span><span>−{formatNaira(price.discount)}</span></div>}
               </>
             )}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
-import { site } from "@/lib/site";
+import Portrait from "@/components/Portrait";
+import { site, founder } from "@/lib/site";
 
 export const metadata: Metadata = { title: "About — ZIGAM" };
 
@@ -60,15 +61,27 @@ export default function About() {
               <h3 style={{ color: "var(--gold-deep)" }}>Mission</h3>
               <p>To be Africa&apos;s most trusted support services ecosystem, redefining modern living by giving homes and businesses seamless access to exceptional support while elevating the dignity and value of service.</p>
             </Reveal>
-            <Reveal className="card" delay={200}>
-              <h3 style={{ color: "var(--gold-deep)" }}>Our model</h3>
-              <p>Our associates are independent contractors — skilled professionals we vet and train — serving clients across homes and businesses anywhere you have a household.</p>
-            </Reveal>
           </div>
         </div>
       </section>
 
-      <section className="block">
+      {/* Meet the Founder */}
+      <section className="block founder-section">
+        <div className="container">
+          <Reveal className="founder-wrap">
+            <Portrait src={founder.photo} alt={`${founder.fullName}, ${founder.title} of Zigam`} initials={founder.initials} />
+            <div className="founder-copy">
+              <p className="eyebrow">Meet the Founder</p>
+              <h2>{founder.fullName} <span className="founder-short">({founder.shortName})</span></h2>
+              <p className="founder-title">{founder.title}</p>
+              <hr className="rule" />
+              <p>{founder.bio}</p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="block" style={{ background: "var(--cream-2)" }}>
         <div className="container">
           <Reveal className="section-head">
             <p className="eyebrow">What we stand for</p>

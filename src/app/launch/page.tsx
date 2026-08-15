@@ -2,19 +2,19 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import Logo from "@/components/Logo";
 import Portrait from "@/components/Portrait";
-import { site } from "@/lib/site";
+import { site, founder, oziServices } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "ZIGAM — Coming Soon",
   description: "Africa's premier ecosystem of homemaking professionals. Request Founder's Access.",
 };
 
-const oziBits = [
-  { icon: "fa-broom", t: "Cleaning & Care", d: "Home and workplace cleaning that creates clean, refreshed spaces." },
-  { icon: "fa-shirt", t: "Wardrobe & Laundry", d: "Thoughtful care for your garments and household linens." },
-  { icon: "fa-bag-shopping", t: "Errand Concierge", d: "Everyday tasks and personal errands, managed with ease." },
-  { icon: "fa-utensils", t: "Kitchen Operations", d: "A professional mise en place — prep, pantry, and upkeep." },
-];
+const iconMap: Record<string, string> = {
+  broom: "fa-broom",
+  shirt: "fa-shirt",
+  bag: "fa-bag-shopping",
+  utensils: "fa-utensils",
+};
 
 export default function Launch() {
   return (
@@ -59,14 +59,14 @@ export default function Launch() {
           <Reveal className="section-head">
             <p className="eyebrow on-dark">Our signature solution</p>
             <h2>The Ozi Experience</h2>
-            <p>A signature four-in-one support solution designed for modern homes and businesses. The seamless eight-hour lifestyle service covering your cleaning, laundry, errands and kitchen needs, all in one booking or subscription.</p>
+            <p>A signature four-in-one support solution designed for modern homes and businesses. The seamless eight-hour lifestyle service covering your cleaning, laundry, errands and kitchen needs, all in one booking or membership.</p>
           </Reveal>
           <div className="grid grid-4">
-            {oziBits.map((s, i) => (
-              <Reveal key={s.t} className="card" delay={i * 80} style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(194,161,77,0.25)" }}>
-                <div className="card-icon"><i className={`fas ${s.icon}`} /></div>
-                <h3 style={{ color: "var(--ivory)" }}>{s.t}</h3>
-                <p style={{ color: "rgba(243,237,225,0.72)" }}>{s.d}</p>
+            {oziServices.map((s, i) => (
+              <Reveal key={s.title} className="card" delay={i * 80} style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(194,161,77,0.25)" }}>
+                <div className="card-icon"><i className={`fas ${iconMap[s.icon]}`} /></div>
+                <h3 style={{ color: "var(--ivory)" }}>{s.title}</h3>
+                <p style={{ color: "rgba(243,237,225,0.72)" }}>{s.desc}</p>
               </Reveal>
             ))}
           </div>
@@ -83,17 +83,13 @@ export default function Launch() {
       <section className="block founder-section">
         <div className="container">
           <Reveal className="founder-wrap">
-            <Portrait src="/images/founder-kaeto.jpeg" alt="Kaetochukwu Udeh, Founder of Zigam" initials="KU" />
+            <Portrait src={founder.photo} alt={`${founder.fullName}, ${founder.title} of Zigam`} initials={founder.initials} />
             <div className="founder-copy">
               <p className="eyebrow">Meet the Founder</p>
-              <h2>Kaetochukwu Udeh <span className="founder-short">(Kaeto)</span></h2>
-              <p className="founder-title">Founder</p>
+              <h2>{founder.fullName} <span className="founder-short">({founder.shortName})</span></h2>
+              <p className="founder-title">{founder.title}</p>
               <hr className="rule" />
-              <p>
-                Zigam was born from a simple conviction: that exceptional home and workplace support should be
-                effortless, dignified, and built on trust. Kaeto leads that vision — pairing world-class training with
-                genuine care to redefine modern living across Africa.
-              </p>
+              <p>{founder.bio}</p>
             </div>
           </Reveal>
         </div>
