@@ -413,6 +413,35 @@ section { position: relative; }
 .op-role { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--white); }
 .op-loc { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.85); }
 
+/* ---------- Careers / job description ---------- */
+/* Slim inline band of key role facts */
+.role-facts {
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+    gap: 0.8rem 2rem; margin: 2rem auto 0; max-width: 780px;
+    padding: 1.1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.role-facts .fact { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;
+    color: var(--charcoal); font-weight: 500; white-space: nowrap; }
+.role-facts .fact i { color: var(--gold-deep); font-size: 0.85rem; }
+
+.dark-list { margin-top: 1rem; display: grid; gap: 0.5rem; }
+.dark-list li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.88rem; color: rgba(243,237,225,0.72); }
+.dark-list li i { color: var(--gold-soft); margin-top: 0.35rem; font-size: 0.72rem; }
+
+.detail-list.two-up { grid-template-columns: 1fr 1fr; gap: 0.6rem 2rem; }
+@media (max-width: 700px) { .detail-list.two-up { grid-template-columns: 1fr; } }
+
+.attr-list { display: grid; gap: 0; border-top: 1px solid var(--border); }
+.attr-row { display: grid; grid-template-columns: 180px 1fr; gap: 1.5rem; padding: 1.1rem 0;
+    border-bottom: 1px solid var(--border); align-items: baseline; }
+.attr-row strong { font-family: var(--font-serif); font-size: 1.25rem; color: var(--gold-deep); }
+.attr-row span { color: var(--muted); }
+@media (max-width: 640px) { .attr-row { grid-template-columns: 1fr; gap: 0.2rem; } }
+
+.pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+.pill { background: var(--ivory); border: 1px solid var(--border); border-radius: 50px;
+    padding: 0.4rem 1rem; font-size: 0.85rem; color: var(--charcoal); }
+
 /* Legal layout with sticky table of contents */
 .legal-layout { display: grid; grid-template-columns: 260px 1fr; gap: 3rem; align-items: start; }
 .legal-toc { position: sticky; top: calc(var(--header-h) + 16px); background: var(--ivory);

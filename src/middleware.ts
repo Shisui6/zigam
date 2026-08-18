@@ -39,8 +39,11 @@ export function middleware(req: NextRequest) {
   }
 
   // 3) Always allow the launch page, API routes, and static assets.
+  // /careers stays open pre-launch so we can recruit Associates while the
+  // rest of the site is still gated.
   const allowed =
     pathname === "/launch" ||
+    pathname === "/careers" ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/images") ||

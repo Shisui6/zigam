@@ -27,7 +27,7 @@ export default function Home() {
             </Reveal>
             <Reveal className="hero-ctas" delay={240}>
               <Link href="/booking" className="btn btn-gold">Book a Service</Link>
-              <Link href="/about#careers" className="btn btn-outline">Join Our Team</Link>
+              <Link href="/careers" className="btn btn-outline">Join Our Team</Link>
             </Reveal>
           </div>
           <Reveal className="hero-figure" delay={200}>
@@ -158,9 +158,9 @@ export default function Home() {
           <Reveal>
             <h2>Looking for flexible, meaningful work?</h2>
             <p>Join the Zigam workforce. We offer professional training, supervision, and the dignity of formal work — on a schedule that respects your time.</p>
-            <a href={site.workforceForm} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-              <i className="fas fa-user-plus" /> Apply Now
-            </a>
+            <Link href="/careers" className="btn btn-dark">
+              <i className="fas fa-user-plus" /> View the role &amp; apply
+            </Link>
           </Reveal>
         </div>
       </section>

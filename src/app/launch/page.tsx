@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Logo from "@/components/Logo";
 import Portrait from "@/components/Portrait";
@@ -128,9 +129,9 @@ export default function Launch() {
                 <span className="op-loc">Enugu &amp; Lagos</span>
               </div>
             </div>
-            <a href={site.workforceForm} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-              <i className="fas fa-user-plus" /> Apply to Join
-            </a>
+            <Link href="/careers" className="btn btn-dark">
+              <i className="fas fa-user-plus" /> View the role &amp; apply
+            </Link>
           </Reveal>
         </div>
       </section>

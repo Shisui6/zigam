@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Portrait from "@/components/Portrait";
-import { site, founder } from "@/lib/site";
+import { founder } from "@/lib/site";
 
 export const metadata: Metadata = { title: "About — ZIGAM" };
 
@@ -103,9 +104,9 @@ export default function About() {
           <Reveal>
             <h2>Join the Zigam workforce</h2>
             <p>We&apos;re hiring young adults in Enugu and Lagos. Receive professional training, supervision, and the dignity of formal work — on a schedule that respects your time.</p>
-            <a href={site.workforceForm} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-              <i className="fas fa-user-plus" /> Apply to Join
-            </a>
+            <Link href="/careers" className="btn btn-dark">
+              <i className="fas fa-user-plus" /> View the role &amp; apply
+            </Link>
           </Reveal>
         </div>
       </section>
