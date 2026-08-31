@@ -20,6 +20,8 @@ export default function Footer() {
                   <Link href={item.href}>{item.label}</Link>
                 </li>
               ))}
+              <li><Link href="/vouchers">Gift Vouchers</Link></li>
+              <li><Link href="/blog">The Journal</Link></li>
               <li><Link href="/terms">Terms of Use</Link></li>
               <li><Link href="/service-details">Service Details</Link></li>
             </ul>
