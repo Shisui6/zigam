@@ -4,7 +4,7 @@
 export type DetailBlock =
   | { kind: "list"; heading?: string; items: string[] }
   | { kind: "table"; heading?: string; headers: string[]; rows: string[][] }
-  | { kind: "note"; text: string };
+  | { kind: "note"; text: string; linkHref?: string; linkLabel?: string };
 
 export type ServiceDetail = {
   slug: string;
@@ -33,7 +33,7 @@ export const serviceDetails: ServiceDetail[] = [
         headers: ["For homes", "For businesses"],
         rows: [
           [
-            "Grocery shopping and home supply procurement · Pharmacy and prescription collections · Laundry and dry cleaning drop-off and pickup · Package and parcel collection and delivery · Bill payments and routine transactions · Household supply purchases · Gift shopping and delivery · School and office-related pick-ups · Courier and dispatch coordination · Basic personal shopping assistance",
+            "Grocery shopping and home supply procurement · Pharmacy and prescription collections · Laundry and dry cleaning drop-off and pickup · Package and parcel collection and delivery · Bill payments and routine transactions · Household supply purchases · Gift shopping and delivery · Courier and dispatch coordination · Basic personal shopping assistance",
             "Collection and delivery of documents · Bank deposits and routine banking errands · Procurement of office supplies and restocking · Courier coordination and dispatch services · Collection of business permits and regulatory documents · Vendor and supplier pickups and liaison · Delivery of packages to clients and partners · Event-related purchases and logistics support · Administrative errands on behalf of businesses · Inter-office document delivery and dispatch management",
           ],
         ],
@@ -66,13 +66,15 @@ export const serviceDetails: ServiceDetail[] = [
         kind: "note",
         text:
           "While Associates support meal readiness, they do not replace a professional chef or provide specialised catering services.",
+        linkHref: "/booking",
+        linkLabel: "Hire a Private Chef",
       },
     ],
   },
   {
     slug: "laundry-and-care",
     icon: "fa-shirt",
-    title: "Laundry and Care",
+    title: "Wardrobe and Laundry",
     summary: "Thoughtful wardrobe and linen care, delivered with attention to detail.",
     idealFor: "Anyone who values their time and their garments.",
     blocks: [
@@ -322,7 +324,7 @@ export const serviceDetails: ServiceDetail[] = [
         rows: [
           ["Living room", "Cobwebs taken out · All surfaces dusted and wiped · Door knobs and frames polished · Light switches cleaned · Mirrors cleaned"],
           ["Bedroom", "Cobwebs taken out · All surfaces dusted and polished · Hard surfaces swept and cleaned · Beds arranged and laid neatly · Trash can emptied and washed"],
-          ["Kitchen", "Cobwebs taken out · Dishes washed · Counters and table tops cleaned · Outside of appliances cleaned · Sink cleaned inside · Hard surfaces swept and cleaned · Trash can emptied and washed"],
+          ["Kitchen", "Cobwebs taken out · Counters and table tops cleaned · Outside of appliances cleaned · Sink cleaned inside · Hard surfaces swept and cleaned · Trash can emptied and washed"],
           ["Restroom and bathroom", "Cobwebs taken out · Urinals, toilets and toilet seats washed · Hard surfaces swept and cleaned · Tiles and bathtub washed · Mirrors cleaned · Trash can emptied and washed"],
         ],
       },

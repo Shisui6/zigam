@@ -45,7 +45,7 @@ export default function About() {
             </p>
           </Reveal>
           <Reveal className="quote-card" delay={120}>
-            <p>&ldquo;We create more than clean and organised spaces — we create time, comfort, and peace of mind.&rdquo;</p>
+            <p>&ldquo;We create more than clean and organised spaces — we create time, convenience, consistency, comfort, and peace of mind.&rdquo;</p>
             <cite>— The Zigam promise</cite>
           </Reveal>
         </div>

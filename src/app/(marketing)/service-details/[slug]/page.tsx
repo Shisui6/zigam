@@ -75,7 +75,17 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 </>
               )}
 
-              {b.kind === "note" && <div className="note">{b.text}</div>}
+              {b.kind === "note" && (
+                <div className="note">
+                  {b.text}
+                  {b.linkHref && (
+                    <>
+                      {" "}
+                      <Link href={b.linkHref}>{b.linkLabel ?? "Learn more"}</Link>.
+                    </>
+                  )}
+                </div>
+              )}
             </Reveal>
           ))}
 

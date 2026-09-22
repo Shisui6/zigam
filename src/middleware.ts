@@ -44,6 +44,7 @@ export function middleware(req: NextRequest) {
   const allowed =
     pathname === "/launch" ||
     pathname === "/careers" ||
+    pathname.startsWith("/account") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/images") ||

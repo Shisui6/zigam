@@ -234,7 +234,7 @@ section { position: relative; }
     position: absolute; bottom: -22px; left: -22px; background: var(--charcoal); color: var(--ivory);
     padding: 1.1rem 1.5rem; border-radius: 14px; box-shadow: var(--shadow); max-width: 220px;
 }
-.hero-figure .badge strong { color: var(--gold-soft); font-family: var(--font-serif); font-size: 1.6rem; }
+.hero-figure .badge strong { color: var(--gold-soft); font-family: var(--font-serif); font-size: 1.6rem; word-spacing: -0.15em; white-space: nowrap; }
 .hero-figure .badge span { display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }
 @media (max-width: 880px) {
     .hero .container { grid-template-columns: 1fr; text-align: center; }
@@ -296,12 +296,17 @@ section { position: relative; }
 /* FAQ */
 .faq-item { background: var(--ivory); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 0.9rem; overflow: hidden; }
 .faq-q { width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 1.3rem 1.6rem;
-    display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-family: var(--font-serif); font-size: 1.2rem; color: var(--charcoal); }
-.faq-q i { color: var(--gold-deep); transition: transform 0.3s var(--ease); font-size: 0.9rem; }
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; font-family: var(--font-serif); font-size: 1.2rem; color: var(--charcoal); }
+.faq-q span { flex: 1; min-width: 0; line-height: 1.35; }
+.faq-q i { flex: 0 0 auto; color: var(--gold-deep); transition: transform 0.3s var(--ease); font-size: 0.9rem; margin-top: 0.35em; }
 .faq-item.open .faq-q i { transform: rotate(45deg); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s var(--ease); }
-.faq-item.open .faq-a { max-height: 320px; }
-.faq-a p { padding: 0 1.6rem 1.4rem; color: var(--muted); }
+.faq-a p { padding: 0 1.6rem 1.4rem; color: var(--muted); line-height: 1.6; overflow-wrap: break-word; }
+
+@media (max-width: 640px) {
+  .faq-q { padding: 1.1rem 1.2rem; gap: 0.8rem; font-size: 1.05rem; }
+  .faq-a p { padding: 0 1.2rem 1.2rem; font-size: 0.95rem; }
+}
 
 /* Values grid */
 .value-card h3 { font-size: 1.35rem; margin-bottom: 0.4rem; color: var(--gold-deep); }
@@ -412,6 +417,51 @@ section { position: relative; }
     padding: 1.1rem 1.6rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; backdrop-filter: blur(4px); }
 .op-role { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--white); }
 .op-loc { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.85); }
+
+/* ============================================================
+   MEMBER ACCOUNT
+   ============================================================ */
+.login-form { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; max-width: 520px; margin: 0 auto; }
+.login-form input { flex: 1; min-width: 240px; padding: 0.9rem 1.1rem; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); font-family: var(--font-sans); font-size: 1rem; background: var(--white); }
+.login-form input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(194,161,77,0.18); }
+
+.acct-notice { background: rgba(194,161,77,0.12); border-left: 3px solid var(--gold); color: var(--charcoal);
+    padding: 0.9rem 1.2rem; border-radius: var(--radius-sm); font-size: 0.95rem; }
+
+.member-card { background: var(--ivory); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1.8rem; margin-bottom: 1.4rem; box-shadow: var(--shadow-sm); }
+.member-card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+.mc-tier { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700; color: var(--charcoal); margin-right: 0.8rem; }
+.mc-status { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.8rem; border-radius: 50px; background: var(--cream-2); color: var(--muted); vertical-align: middle; }
+.mc-status.s-paid { background: rgba(46,158,107,0.14); color: #1f7a52; }
+.mc-status.s-pending { background: rgba(194,161,77,0.16); color: var(--gold-deep); }
+.mc-price { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--gold-deep); }
+.mc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+.mc-label { display: block; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.62rem; font-weight: 700;
+    color: var(--gold-deep); margin-bottom: 0.2rem; }
+.mc-pauses { margin-top: 1.1rem; border-top: 1px dashed var(--border); padding-top: 0.9rem; }
+.mc-pauses p { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.3rem; }
+.mc-pauses i { color: var(--gold-deep); margin-right: 0.4rem; }
+.mc-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1.4rem; }
+.pause-form { width: 100%; background: var(--cream); border-radius: var(--radius-sm); padding: 1.1rem 1.2rem; }
+.pause-dates { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+.pause-dates label { font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+.pause-dates input { padding: 0.5rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; font-family: var(--font-sans); }
+
+.renew-row { display: flex; gap: 0.7rem; align-items: flex-start; background: var(--ivory);
+    border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem 1.2rem; cursor: pointer; }
+.renew-row input { margin-top: 0.3rem; width: 18px; height: 18px; accent-color: var(--gold-deep); }
+.renew-row span { font-size: 0.92rem; color: var(--muted); }
+
+.stars-static { color: var(--gold-deep); letter-spacing: 0.1em; }
+.stars-input { display: flex; gap: 0.15rem; margin-bottom: 0.4rem; }
+.stars-input button { background: none; border: 0; font-size: 1.25rem; color: var(--border); cursor: pointer; padding: 0; }
+.stars-input button.on { color: var(--gold-deep); }
+.rate-form input { width: 100%; padding: 0.45rem 0.7rem; border: 1px solid var(--border); border-radius: 6px;
+    font-size: 0.85rem; margin-bottom: 0.5rem; font-family: var(--font-sans); }
+.btn-sm { padding: 0.45rem 1rem; font-size: 0.7rem; }
 
 /* ============================================================
    JOURNAL / BLOG

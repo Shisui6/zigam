@@ -18,7 +18,17 @@ const faqs: FaqEntry[] = [
   },
   {
     q: "What is Kitchen Operations?",
-    a: "Kitchen Operations is our professional mise en place service — a French culinary principle meaning “everything in its place.” Your Zigam Associate prepares ingredients, organises your pantry and workspace, and keeps your kitchen clean and ready, creating the perfect environment for cooking. It's ideal for busy households, private chefs, food bloggers, and content creators who value an organised, efficient kitchen. While Associates support meal readiness, they do not replace a professional chef or provide specialised catering services.",
+    a: (
+      <>
+        Kitchen Operations is our professional mise en place service — a French culinary principle meaning
+        “everything in its place.” Your Zigam Associate prepares ingredients, organises your pantry and workspace,
+        and keeps your kitchen clean and ready, creating the perfect environment for cooking. It&apos;s ideal for
+        busy households, private chefs, food bloggers, and content creators who value an organised, efficient
+        kitchen. While Associates support meal readiness, they do not replace a professional chef or provide
+        specialised catering services. To hire a Private Chef,{" "}
+        <Link href="/booking">use the booking page</Link>.
+      </>
+    ),
   },
   {
     q: "How do I make payment?",
@@ -39,8 +49,21 @@ const faqs: FaqEntry[] = [
     ),
   },
   {
-    q: "What is the Assurance?",
-    a: "The Assurance is a form of insurance against theft and damage caused by an associate. To access the Assurance, simply make a one-time payment during the booking process.",
+    q: "What is the Zigam Assurance?",
+    a: (
+      <>
+        The Zigam Assurance is an optional layer of protection designed to give you peace of mind. Because we
+        operate within high-value environments containing delicate surfaces, fine art, and luxury assets, the
+        Assurance provides coverage against any eligible, unforeseen, accidental incidents during the Zigam
+        Experience.
+        <br />
+        <br />
+        Our associates undergo rigorous vetting and are carefully chosen for their exceptional integrity, guided by
+        our standards of professionalism and discretion. The Assurance is simply an added layer of confidence for
+        our clients — we believe elite service should always provide a seamless safety net for your property. To
+        activate this coverage, simply include the Assurance during your seamless booking process.
+      </>
+    ),
   },
   {
     q: "Who is a Professional Organiser?",
@@ -91,7 +114,7 @@ export default function Services() {
             <h3 style={{ fontSize: "1.4rem" }}>A Taste of Ozi</h3>
             <p>
               Get a taste of Ozi for a day — book a private one-day experience from{" "}
-              <strong>{formatNaira(RATES.tasteOfOziPrice)}</strong>. Time range: 9am–5pm or 12pm–6pm.
+              <strong>{formatNaira(RATES.tasteOfOziPrice)}</strong>. Time range: 9am–5pm.
             </p>
           </Reveal>
           <div style={{ textAlign: "center", marginTop: "2rem" }}>

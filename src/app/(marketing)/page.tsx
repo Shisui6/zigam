@@ -118,21 +118,26 @@ export default function Home() {
             <p className="eyebrow">Our pricing</p>
             <h2>Simple and transparent</h2>
           </Reveal>
-          <div className="grid grid-3">
+          <div className="grid grid-4">
             <Reveal className="card price-card feature">
               <h3>Ozi Membership</h3>
               <div className="amount">₦52,000<span style={{ fontSize: "0.9rem" }}>/mo</span></div>
               <p>All four services in one membership — from ₦13,000 per day.</p>
             </Reveal>
-            <Reveal className="card price-card" delay={100}>
+            <Reveal className="card price-card" delay={80}>
+              <h3>A Taste of Ozi</h3>
+              <div className="amount">₦15,000</div>
+              <p>Get a taste of Ozi for a day — book a private one-day experience. Time range: 9am–5pm.</p>
+            </Reveal>
+            <Reveal className="card price-card" delay={160}>
               <h3>Deep Cleaning</h3>
               <div className="amount">₦90,000<span style={{ fontSize: "0.9rem" }}>+</span></div>
               <p>A thorough, in-depth clean for every area of your space.</p>
             </Reveal>
-            <Reveal className="card price-card" delay={200}>
+            <Reveal className="card price-card" delay={240}>
               <h3>Ozi Plus</h3>
               <div className="amount">Custom</div>
-              <p>Move-in/out, private chef, gardening, fumigation and more.</p>
+              <p>Decluttering and organising, private chef, gardening, fumigation and more.</p>
             </Reveal>
           </div>
           <div style={{ textAlign: "center", marginTop: "2.5rem" }}>

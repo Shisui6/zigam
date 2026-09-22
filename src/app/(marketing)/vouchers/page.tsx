@@ -11,9 +11,12 @@ export const metadata: Metadata = {
 };
 
 const denominations = [
+  { amount: "₦15,000", note: "A Taste of Ozi", icon: "fa-mug-hot" },
   { amount: "₦50,000", note: "A generous gesture", icon: "fa-gift" },
   { amount: "₦100,000", note: "A serious upgrade", icon: "fa-gem" },
   { amount: "₦150,000", note: "The grand gesture", icon: "fa-crown" },
+  { amount: "₦200,000", note: "A lasting impression", icon: "fa-star" },
+  { amount: "₦500,000", note: "The ultimate gift", icon: "fa-award" },
 ];
 
 function GiftButton({ subject }: { subject: string }) {
@@ -45,7 +48,7 @@ export default function Vouchers() {
           <Reveal className="section-head">
             <p className="eyebrow">Choose a value</p>
             <h2>Gift cards</h2>
-            <p>A Zigam balance they can put toward anything — a membership, a deep clean, a day of Ozi.</p>
+            <p>A Zigam balance they can put toward anything — a membership, a deep clean, a one-time service or A Taste of Ozi.</p>
           </Reveal>
           <div className="grid grid-3">
             {denominations.map((d, i) => (
@@ -155,7 +158,11 @@ export default function Vouchers() {
               </Reveal>
             ))}
           </div>
-          <Reveal as="p" style={{ textAlign: "center", marginTop: "2rem", fontSize: "0.9rem", color: "var(--muted)" }}>
+          <Reveal as="p" style={{ textAlign: "center", marginTop: "1.5rem", fontSize: "0.9rem", color: "var(--muted)" }}>
+            Vouchers are valid for 3 months from the date of purchase. You can check a voucher&apos;s status —
+            Pending or Redeemed — at any time by contacting our team.
+          </Reveal>
+          <Reveal as="p" style={{ textAlign: "center", marginTop: "0.8rem", fontSize: "0.9rem", color: "var(--muted)" }}>
             Online voucher checkout is coming soon. For now, request any voucher and our team will arrange it personally
             within one business day — email <a href={`mailto:${site.email}`} style={{ color: "var(--gold-deep)" }}>{site.email}</a> or
             call <a href={site.phoneHref} style={{ color: "var(--gold-deep)" }}>{site.phone}</a>.

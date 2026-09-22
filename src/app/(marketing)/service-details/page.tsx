@@ -11,7 +11,7 @@ export default function ServiceDetailsIndex() {
       <section className="page-hero">
         <div className="container">
           <h1>Description of Services</h1>
-          <p>At Zigam, we create more than clean and organised spaces — we create time, comfort, and peace of mind, allowing our clients to focus on living and performing at their best.</p>
+          <p>At Zigam, we create more than clean and organised spaces — we create time, comfort, convenience, consistency and peace of mind, allowing our clients to focus on living and performing at their best.</p>
         </div>
       </section>
 
@@ -41,6 +41,7 @@ export default function ServiceDetailsIndex() {
         <div className="container-narrow prose">
           <h2>What we expect</h2>
           <p>Our services can only be carried out if you have running or adequately stored water within the premises.</p>
+          <p>Our services will only be fulfilled if you have all the essential cleaning materials.</p>
           <div className="note">
             <strong>Recommended products:</strong> for our membership service and A Taste of Ozi, your Associate will
             use the cleaning and laundry products you provide. These are basic recommendations, not hard requirements:

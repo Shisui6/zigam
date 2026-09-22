@@ -107,5 +107,5 @@ export const workforceFaq = [
   { q: "What's the pay?", a: "Pay depends on services provided and hours committed. All compensation is fair and transparent." },
   { q: "Is this full-time work?", a: "We offer flexible part-time work that fits your work, school or family life." },
   { q: "What qualifications do I need?", a: "We value honesty and a willingness to learn. You should be at least 18 years old with basic communication skills and a positive attitude." },
-  { q: "How do I get started?", a: "Click the “Apply Now” button above to fill out our application form. Our team will contact you within 3–5 business days." },
+  { q: "How do I get started?", a: "Click the “Apply” button below to fill out our application form. Our team will contact you within 3–5 business days." },
 ];

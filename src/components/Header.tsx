@@ -38,9 +38,13 @@ export default function Header() {
           ))}
         </nav>
 
-        <Link href="/booking" className="btn btn-gold header-cta-desktop">
-          Book a Service
-        </Link>
+        <div className="header-cta-desktop" style={{ display: "flex", alignItems: "center", gap: "1.1rem" }}>
+          <Link href="/account" aria-label="My account" title="My account"
+            style={{ color: "var(--charcoal)", fontSize: "1.15rem" }}>
+            <i className="far fa-user" />
+          </Link>
+          <Link href="/booking" className="btn btn-gold">Book a Service</Link>
+        </div>
 
         <button
           className={`nav-toggle${open ? " open" : ""}`}
@@ -59,6 +63,7 @@ export default function Header() {
             {item.label}
           </Link>
         ))}
+        <Link href="/account" onClick={() => setOpen(false)}>My Account</Link>
         <Link href="/booking" className="btn btn-gold" onClick={() => setOpen(false)} style={{ marginTop: "1rem" }}>
           Book a Service
         </Link>
