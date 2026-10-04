@@ -6,7 +6,9 @@ import {
   computePrice,
   assuranceFor,
   formatNaira,
+  minBookableDate,
   oneTimeServices,
+  WEEKDAYS,
   type BookingType,
   type Location,
   type OneTimeService,
@@ -18,6 +20,7 @@ const STEPS = ["Service", "Details", "Contact & Pay"];
 export default function Booking() {
   const [step, setStep] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [attempted, setAttempted] = useState<Record<number, boolean>>({});
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState<string | null>(null);
 
@@ -28,6 +31,7 @@ export default function Booking() {
   const [bedrooms, setBedrooms] = useState("");
   const [oziPlan, setOziPlan] = useState("");
   const [priority, setPriority] = useState("");
+  const [preferredDays, setPreferredDays] = useState<string[]>([]);
   const [upfront6Months, setUpfront6Months] = useState(false);
   const [date, setDate] = useState("");
   const [timeSlot, setTimeSlot] = useState<TimeSlot>("standard");
@@ -42,6 +46,8 @@ export default function Booking() {
   const [terms, setTerms] = useState(false);
 
   const needsBedrooms = Boolean(oneTimeServices.find((s) => s.id === service)?.bedrooms);
+  const selectedTier = oziTiers.find((t) => t.plan === oziPlan);
+  const minDate = useMemo(() => minBookableDate(), []);
 
   const price = useMemo(
     () =>
@@ -79,11 +85,13 @@ export default function Booking() {
       if (!location) missing.push("a location");
       if (type === "subscription" && !oziPlan) missing.push("an Ozi Membership tier");
       if (type === "subscription" && !priority) missing.push("your priority service");
+      if (type === "subscription" && selectedTier && preferredDays.length !== selectedTier.daysPerWeek)
+        missing.push(`${selectedTier.daysPerWeek} preferred day${selectedTier.daysPerWeek > 1 ? "s" : ""} of the week`);
       if (type === "one_time" && !service) missing.push("a service");
       if (needsBedrooms && !bedrooms) missing.push("your home size");
     }
     if (s === 1) {
-      if (!date) missing.push("a preferred date");
+      if (!date) missing.push(type === "subscription" ? "a start date" : "a preferred date");
       if (!address.trim()) missing.push("the service address");
       if (!accessInstructions.trim()) missing.push("access instructions");
     }
@@ -97,11 +105,24 @@ export default function Booking() {
   }
 
   const canProceed = () => missingFor(step).length === 0;
+  const missing = missingFor(step);
+  const bad = (label: string) => attempted[step] && missing.includes(label);
+  const badAny = (labels: string[]) => attempted[step] && labels.some((l) => missing.includes(l));
+
+  function toggleDay(day: string) {
+    setPreferredDays((prev) => {
+      if (prev.includes(day)) return prev.filter((d) => d !== day);
+      const max = selectedTier?.daysPerWeek ?? 7;
+      if (prev.length >= max) return prev; // restricted to tier's allowance
+      return [...prev, day];
+    });
+  }
 
   function goNext() {
-    const missing = missingFor(step);
-    if (missing.length) {
-      setError(`Please provide ${missing.join(", ")}.`);
+    const m = missingFor(step);
+    if (m.length) {
+      setAttempted((a) => ({ ...a, [step]: true }));
+      setError(`Please provide ${m.join(", ")}.`);
       return;
     }
     setError(null);
@@ -109,8 +130,11 @@ export default function Booking() {
   }
 
   async function submit() {
-    const missing = missingFor(2);
-    if (missing.length) return setError(`Please provide ${missing.join(", ")}.`);
+    const m = missingFor(2);
+    if (m.length) {
+      setAttempted((a) => ({ ...a, 2: true }));
+      return setError(`Please provide ${m.join(", ")}.`);
+    }
     setError(null);
     setSubmitting(true);
     try {
@@ -123,6 +147,7 @@ export default function Booking() {
           service: service || undefined,
           oziPlan: oziPlan || undefined,
           priority: priority || undefined,
+          preferredDays: type === "subscription" ? preferredDays : undefined,
           bedrooms: bedrooms || undefined,
           date: date || undefined,
           timeSlot,
@@ -203,19 +228,24 @@ export default function Booking() {
             {/* STEP 0 — Service */}
             {step === 0 && (
               <div>
-                <h3 style={{ marginBottom: "0.8rem" }}>What do you need?</h3>
+                <h3 className={bad("what you need") ? "invalid-label" : ""} style={{ marginBottom: "0.8rem" }}>What do you need?</h3>
                 <div className="choice-grid">
                   <button className={`choice${type === "subscription" ? " selected" : ""}`} onClick={() => setType("subscription")}>
                     <span className="c-title">Ozi Membership</span>
                     <span className="c-sub">All four services, monthly membership</span>
                   </button>
+                  <button className={`choice${type === "taste_of_ozi" ? " selected" : ""}`} onClick={() => setType("taste_of_ozi")}>
+                    <span className="c-title">A Taste of Ozi</span>
+                    <span className="c-sub">Get a taste of Ozi for a day — book a private one-day experience</span>
+                  </button>
                   <button className={`choice${type === "one_time" ? " selected" : ""}`} onClick={() => setType("one_time")}>
                     <span className="c-title">One-time Service</span>
-                    <span className="c-sub">Deep cleaning & specialty</span>
+                    <span className="c-sub">Deep Cleaning, decluttering and organising, private chef, gardening, fumigation and more.</span>
                   </button>
                 </div>
+                {bad("what you need") && <p className="required-hint">Please select what you need.</p>}
 
-                <h3 style={{ margin: "1.6rem 0 0.8rem" }}>Location</h3>
+                <h3 className={bad("a location") ? "invalid-label" : ""} style={{ margin: "1.6rem 0 0.8rem" }}>Location</h3>
                 <div className="choice-grid">
                   {(["enugu", "lagos"] as Location[]).map((loc) => (
                     <button key={loc} className={`choice${location === loc ? " selected" : ""}`} onClick={() => setLocation(loc)}>
@@ -223,21 +253,36 @@ export default function Booking() {
                     </button>
                   ))}
                 </div>
+                {bad("a location") && <p className="required-hint">Please choose Enugu or Lagos.</p>}
+
+                {type === "taste_of_ozi" && (
+                  <p className="summary-note" style={{ marginTop: "1.2rem" }}>
+                    A fixed price of {formatNaira(15000)} — not priced by home size. Time range: 9am–5pm.
+                  </p>
+                )}
 
                 {type === "subscription" && (
                   <>
-                    <h3 style={{ margin: "1.6rem 0 0.8rem" }}>Choose your Ozi Membership</h3>
+                    <h3 className={bad("an Ozi Membership tier") ? "invalid-label" : ""} style={{ margin: "1.6rem 0 0.8rem" }}>Choose your Ozi Membership</h3>
                     <div className="choice-grid">
                       {oziTiers.map((t) => (
-                        <button key={t.plan} className={`choice${oziPlan === t.plan ? " selected" : ""}`} onClick={() => setOziPlan(t.plan)}>
+                        <button
+                          key={t.plan}
+                          className={`choice${oziPlan === t.plan ? " selected" : ""}`}
+                          onClick={() => {
+                            setOziPlan(t.plan);
+                            setPreferredDays([]);
+                          }}
+                        >
                           <span className="c-title">{t.plan}</span>
                           <span className="c-sub">{t.freq}</span>
                           <span className="c-price">{formatNaira(Number(t.price.replace(/,/g, "")))}/mo</span>
                         </button>
                       ))}
                     </div>
+                    {bad("an Ozi Membership tier") && <p className="required-hint">Please choose a membership tier.</p>}
 
-                    <h3 style={{ margin: "1.6rem 0 0.4rem" }}>Which service is your priority?</h3>
+                    <h3 className={bad("your priority service") ? "invalid-label" : ""} style={{ margin: "1.6rem 0 0.4rem" }}>Which service is your priority?</h3>
                     <p style={{ color: "var(--muted)", fontSize: "0.9rem", marginBottom: "0.8rem" }}>
                       The Ozi Membership is all-in-one — your Associate covers all four. Tell us which matters most so we
                       brief them accordingly.
@@ -249,12 +294,45 @@ export default function Booking() {
                         </button>
                       ))}
                     </div>
+                    {bad("your priority service") && <p className="required-hint">Please choose your priority service.</p>}
+
+                    {oziPlan && selectedTier && (
+                      <>
+                        <h3
+                          className={badAny([`${selectedTier.daysPerWeek} preferred day${selectedTier.daysPerWeek > 1 ? "s" : ""} of the week`]) ? "invalid-label" : ""}
+                          style={{ margin: "1.6rem 0 0.4rem" }}
+                        >
+                          Preferred day{selectedTier.daysPerWeek > 1 ? "s" : ""} of the week
+                        </h3>
+                        <p style={{ color: "var(--muted)", fontSize: "0.9rem", marginBottom: "0.8rem" }}>
+                          {selectedTier.plan} includes {selectedTier.daysPerWeek} day{selectedTier.daysPerWeek > 1 ? "s" : ""} a
+                          week — choose exactly {selectedTier.daysPerWeek}.
+                        </p>
+                        <div className="choice-grid choice-grid-days">
+                          {WEEKDAYS.map((d) => (
+                            <button
+                              key={d}
+                              className={`choice choice-sm${preferredDays.includes(d) ? " selected" : ""}`}
+                              onClick={() => toggleDay(d)}
+                              disabled={!preferredDays.includes(d) && preferredDays.length >= selectedTier.daysPerWeek}
+                            >
+                              <span className="c-title">{d}</span>
+                            </button>
+                          ))}
+                        </div>
+                        {badAny([`${selectedTier.daysPerWeek} preferred day${selectedTier.daysPerWeek > 1 ? "s" : ""} of the week`]) && (
+                          <p className="required-hint">
+                            Please choose exactly {selectedTier.daysPerWeek} day{selectedTier.daysPerWeek > 1 ? "s" : ""}.
+                          </p>
+                        )}
+                      </>
+                    )}
                   </>
                 )}
 
                 {type === "one_time" && (
                   <>
-                    <h3 style={{ margin: "1.6rem 0 0.8rem" }}>Choose a service</h3>
+                    <h3 className={bad("a service") ? "invalid-label" : ""} style={{ margin: "1.6rem 0 0.8rem" }}>Choose a service</h3>
                     <div className="choice-grid">
                       {oneTimeServices.map((s) => (
                         <button key={s.id} className={`choice${service === s.id ? " selected" : ""}`} onClick={() => setService(s.id)}>
@@ -263,9 +341,10 @@ export default function Booking() {
                         </button>
                       ))}
                     </div>
+                    {bad("a service") && <p className="required-hint">Please choose a service.</p>}
                     {needsBedrooms && (
                       <>
-                        <h3 style={{ margin: "1.6rem 0 0.8rem" }}>Home size</h3>
+                        <h3 className={bad("your home size") ? "invalid-label" : ""} style={{ margin: "1.6rem 0 0.8rem" }}>Home size</h3>
                         <div className="choice-grid">
                           {deepCleaning.map((d) => (
                             <button key={d.rooms} className={`choice${bedrooms === d.rooms ? " selected" : ""}`} onClick={() => setBedrooms(d.rooms)}>
@@ -274,6 +353,7 @@ export default function Booking() {
                             </button>
                           ))}
                         </div>
+                        {bad("your home size") && <p className="required-hint">Please choose your home size.</p>}
                       </>
                     )}
                   </>
@@ -285,9 +365,16 @@ export default function Booking() {
             {step === 1 && (
               <div>
                 <h3 style={{ marginBottom: "1rem" }}>Schedule & access</h3>
-                <div className="field">
-                  <label htmlFor="date">Preferred date</label>
-                  <input id="date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+                <div className={`field${badAny(["a start date", "a preferred date"]) ? " invalid" : ""}`}>
+                  <label htmlFor="date">{type === "subscription" ? "Start date" : "Preferred date"}</label>
+                  <input id="date" type="date" min={minDate} value={date} onChange={(e) => setDate(e.target.value)} />
+                  <p style={{ color: "var(--muted)", fontSize: "0.82rem", marginTop: "0.3rem" }}>
+                    We require at least 24 hours&apos; notice — same-day bookings aren&apos;t available, and requests
+                    made after 5pm need an extra day.
+                  </p>
+                  {badAny(["a start date", "a preferred date"]) && (
+                    <p className="required-hint">Please choose a date.</p>
+                  )}
                 </div>
                 <div className="field">
                   <label>Time slot</label>
@@ -300,13 +387,15 @@ export default function Booking() {
                     </button>
                   </div>
                 </div>
-                <div className="field">
+                <div className={`field${bad("the service address") ? " invalid" : ""}`}>
                   <label htmlFor="address">Service address</label>
                   <input id="address" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Street, area, city" />
+                  {bad("the service address") && <p className="required-hint">Please provide the service address.</p>}
                 </div>
-                <div className="field">
+                <div className={`field${bad("access instructions") ? " invalid" : ""}`}>
                   <label htmlFor="access">How should our team access the property?</label>
                   <textarea id="access" rows={2} value={accessInstructions} onChange={(e) => setAccess(e.target.value)} placeholder="e.g. lockbox code, hidden key location, gate entry instructions" />
+                  {bad("access instructions") && <p className="required-hint">Please let us know how to access the property.</p>}
                 </div>
                 <div className="check-row">
                   <input id="pets" type="checkbox" checked={hasPets} onChange={(e) => setHasPets(e.target.checked)} />
@@ -334,14 +423,27 @@ export default function Booking() {
             {step === 2 && (
               <div>
                 <h3 style={{ marginBottom: "1rem" }}>Your details</h3>
-                <div className="field"><label htmlFor="name">Full name</label><input id="name" value={name} onChange={(e) => setName(e.target.value)} required /></div>
-                <div className="field"><label htmlFor="email">Email address</label><input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /></div>
-                <div className="field"><label htmlFor="phone">Phone number</label><input id="phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+234" /></div>
+                <div className={`field${bad("your full name") ? " invalid" : ""}`}>
+                  <label htmlFor="name">Full name</label>
+                  <input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+                  {bad("your full name") && <p className="required-hint">Please tell us your full name.</p>}
+                </div>
+                <div className={`field${bad("your email address") ? " invalid" : ""}`}>
+                  <label htmlFor="email">Email address</label>
+                  <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                  {bad("your email address") && <p className="required-hint">Please provide your email address.</p>}
+                </div>
+                <div className={`field${bad("your phone number") ? " invalid" : ""}`}>
+                  <label htmlFor="phone">Phone number</label>
+                  <input id="phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+234" />
+                  {bad("your phone number") && <p className="required-hint">Please provide your phone number.</p>}
+                </div>
                 <div className="field"><label htmlFor="notes">Anything else we should know?</label><textarea id="notes" rows={2} value={notes} onChange={(e) => setNotes(e.target.value)} /></div>
-                <div className="check-row">
+                <div className={`check-row${bad("agreement to the Terms of Use") ? " invalid" : ""}`}>
                   <input id="terms" type="checkbox" checked={terms} onChange={(e) => setTerms(e.target.checked)} />
                   <label htmlFor="terms">I agree to the <Link href="/terms" style={{ color: "var(--gold-deep)", textDecoration: "underline" }}>Terms of Use</Link>.</label>
                 </div>
+                {bad("agreement to the Terms of Use") && <p className="required-hint">Please accept the Terms of Use.</p>}
               </div>
             )}
 
@@ -352,7 +454,7 @@ export default function Booking() {
                 <button className="btn btn-outline" onClick={() => setStep((s) => s - 1)}>Back</button>
               ) : <span />}
               {step < STEPS.length - 1 ? (
-                <button className="btn btn-gold" disabled={!canProceed()} onClick={goNext}>Continue</button>
+                <button className="btn btn-gold" onClick={goNext}>Continue</button>
               ) : (
                 <button className="btn btn-gold" disabled={submitting} onClick={submit}>
                   {submitting ? "Processing…" : price.isQuote ? "Request Quote" : `Pay ${formatNaira(price.total)}`}
@@ -364,10 +466,16 @@ export default function Booking() {
           {/* Summary */}
           <aside className="summary-card">
             <h3>Summary</h3>
-            <div className="summary-row"><span>Type</span><span>{type === "subscription" ? "Ozi Membership" : type === "one_time" ? "One-time" : "—"}</span></div>
+            <div className="summary-row">
+              <span>Type</span>
+              <span>{type === "subscription" ? "Ozi Membership" : type === "taste_of_ozi" ? "A Taste of Ozi" : type === "one_time" ? "One-time" : "—"}</span>
+            </div>
             <div className="summary-row"><span>Location</span><span style={{ textTransform: "capitalize" }}>{location || "—"}</span></div>
             {type === "subscription" && <div className="summary-row"><span>Membership</span><span>{oziPlan || "—"}</span></div>}
             {type === "subscription" && <div className="summary-row"><span>Priority</span><span>{priority || "—"}</span></div>}
+            {type === "subscription" && preferredDays.length > 0 && (
+              <div className="summary-row"><span>Days</span><span>{preferredDays.join(", ")}</span></div>
+            )}
             {type === "one_time" && <div className="summary-row"><span>Service</span><span>{oneTimeServices.find((s) => s.id === service)?.label || "—"}</span></div>}
             {needsBedrooms && <div className="summary-row"><span>Home size</span><span>{bedrooms || "—"}</span></div>}
             {!price.isQuote && price.base > 0 && (

@@ -23,12 +23,11 @@ export const ASSURANCE = {
   percentage: { type: "percent" as const, feeRate: 0.05, coverageRate: 0.1, note: "Per booking" },
 };
 
-export type BookingType = "one_time" | "subscription";
+export type BookingType = "one_time" | "subscription" | "taste_of_ozi";
 export type Location = "enugu" | "lagos";
 export type TimeSlot = "standard" | "off_hours"; // standard = 9am–5pm
 
 export type OneTimeService =
-  | "taste_of_ozi"
   | "deep_cleaning"
   | "move_in_out"
   | "post_construction"
@@ -53,7 +52,6 @@ export const oneTimeServices: {
   bedrooms?: boolean;
   fixedPrice?: number;
 }[] = [
-  { id: "taste_of_ozi", label: "A Taste of Ozi", fixedPrice: RATES.tasteOfOziPrice },
   { id: "deep_cleaning", label: "Deep Cleaning", bedrooms: true },
   { id: "move_in_out", label: "Move-in / Move-out", bedrooms: true },
   { id: "post_construction", label: "Post-Construction Clean", quote: true, bedrooms: true },
@@ -76,6 +74,7 @@ export type PriceInput = {
   date?: string; // ISO date (yyyy-mm-dd)
   assurance?: boolean;
   upfront6Months?: boolean; // membership only
+  preferredDays?: string[]; // membership only — days of the week
 };
 
 export type PriceBreakdown = {
@@ -96,7 +95,7 @@ export function assuranceFor(input: PriceInput, base: number) {
   if (input.type === "subscription") {
     return { fee: ASSURANCE.membership.fee, coverage: ASSURANCE.membership.coverage };
   }
-  if (input.service === "taste_of_ozi") {
+  if (input.type === "taste_of_ozi") {
     return { fee: ASSURANCE.tasteOfOzi.fee, coverage: ASSURANCE.tasteOfOzi.coverage };
   }
   if (input.service === "deep_cleaning" || input.service === "move_in_out") {
@@ -117,6 +116,8 @@ export function computePrice(input: PriceInput): PriceBreakdown {
   if (input.type === "subscription") {
     const tier = oziTiers.find((t) => t.plan === input.oziPlan);
     base = tier ? Number(tier.price.replace(/,/g, "")) : 0;
+  } else if (input.type === "taste_of_ozi") {
+    base = RATES.tasteOfOziPrice;
   } else {
     const svc = oneTimeServices.find((s) => s.id === input.service);
     if (!svc) {
@@ -168,3 +169,21 @@ export function computePrice(input: PriceInput): PriceBreakdown {
 
 export const formatNaira = (n: number) =>
   "₦" + n.toLocaleString("en-NG", { maximumFractionDigits: 0 });
+
+/**
+ * Earliest bookable date, enforcing at least 24 hours' notice.
+ * By 5pm on any given day, bookings for the next day stop being available —
+ * so the earliest selectable date becomes the day after that.
+ */
+export function minBookableDate(now: Date = new Date()): string {
+  const cutoffHour = 17; // 5pm
+  const daysAhead = now.getHours() >= cutoffHour ? 2 : 1;
+  const min = new Date(now);
+  min.setDate(min.getDate() + daysAhead);
+  const y = min.getFullYear();
+  const m = String(min.getMonth() + 1).padStart(2, "0");
+  const d = String(min.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+export const WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];

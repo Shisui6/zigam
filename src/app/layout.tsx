@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
@@ -7,6 +7,24 @@ export const metadata: Metadata = {
   description:
     "Zigam: Africa's premier and most trusted ecosystem of homemaking professionals and the homes and businesses they support.",
   icons: { icon: "/images/favicon.png" },
+  openGraph: {
+    title: "ZIGAM — Your Home, Our Willing Hands",
+    description:
+      "Africa's premier and most trusted ecosystem of homemaking professionals and the homes and businesses they support.",
+    siteName: "ZIGAM",
+    images: ["/images/favicon.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "ZIGAM — Your Home, Our Willing Hands",
+    description:
+      "Africa's premier and most trusted ecosystem of homemaking professionals and the homes and businesses they support.",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#B68A35",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

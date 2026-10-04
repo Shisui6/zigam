@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Logo from "@/components/Logo";
+import VoucherGiftButton from "@/components/VoucherGiftButton";
 import { site, oziTiers, deepCleaning } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -18,15 +19,6 @@ const denominations = [
   { amount: "₦200,000", note: "A lasting impression", icon: "fa-star" },
   { amount: "₦500,000", note: "The ultimate gift", icon: "fa-award" },
 ];
-
-function GiftButton({ subject }: { subject: string }) {
-  const href = `mailto:${site.email}?subject=${encodeURIComponent("Voucher request: " + subject)}`;
-  return (
-    <a href={href} className="btn btn-outline voucher-btn">
-      <i className="fas fa-gift" /> Gift this voucher
-    </a>
-  );
-}
 
 export default function Vouchers() {
   return (
@@ -50,6 +42,20 @@ export default function Vouchers() {
             <h2>Gift cards</h2>
             <p>A Zigam balance they can put toward anything — a membership, a deep clean, a one-time service or A Taste of Ozi.</p>
           </Reveal>
+          <Reveal style={{ maxWidth: 560, margin: "0 auto 2.2rem" }}>
+            <label htmlFor="voucher-note" style={{ display: "block", fontWeight: 600, marginBottom: "0.4rem" }}>
+              Add a note for the receiving party (optional)
+            </label>
+            <textarea
+              id="voucher-note"
+              rows={2}
+              placeholder="e.g. Happy anniversary! Enjoy a lighter week on us."
+              style={{ width: "100%" }}
+            />
+            <p style={{ fontSize: "0.82rem", color: "var(--muted)", marginTop: "0.4rem" }}>
+              Your note is included automatically when you choose a voucher below.
+            </p>
+          </Reveal>
           <div className="grid grid-3">
             {denominations.map((d, i) => (
               <Reveal key={d.amount} delay={i * 100}>
@@ -66,7 +72,7 @@ export default function Vouchers() {
                   </div>
                 </div>
                 <div style={{ textAlign: "center", marginTop: "1.1rem" }}>
-                  <GiftButton subject={`${d.amount} gift card`} />
+                  <VoucherGiftButton subject={`${d.amount} gift card`} email={site.email} />
                 </div>
               </Reveal>
             ))}
@@ -88,12 +94,7 @@ export default function Vouchers() {
                 <p className="vt-name">{t.plan}</p>
                 <p className="vt-freq">{t.freq}</p>
                 <p className="vt-price">₦{t.price}</p>
-                <a
-                  href={`mailto:${site.email}?subject=${encodeURIComponent(`Voucher request: Ozi ${t.plan} Membership`)}`}
-                  className="vt-link"
-                >
-                  Gift this tier <i className="fas fa-arrow-right" />
-                </a>
+                <VoucherGiftButton subject={`Ozi ${t.plan} Membership`} email={site.email} outline={false} />
               </Reveal>
             ))}
           </div>
@@ -117,13 +118,7 @@ export default function Vouchers() {
                     <td>{d.rooms}</td>
                     <td>{d.price}</td>
                     <td style={{ textAlign: "right" }}>
-                      <a
-                        href={`mailto:${site.email}?subject=${encodeURIComponent(`Voucher request: ${d.rooms} cleaning voucher`)}`}
-                        className="vt-link"
-                        style={{ color: "var(--gold-deep)" }}
-                      >
-                        Gift <i className="fas fa-arrow-right" />
-                      </a>
+                      <VoucherGiftButton subject={`${d.rooms} cleaning voucher`} email={site.email} outline={false} label="Gift" />
                     </td>
                   </tr>
                 ))}

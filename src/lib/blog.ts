@@ -17,6 +17,61 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "maintenance-culture",
+    title: "Maintenance Culture: The Habit Behind Every Well-Run Home",
+    excerpt:
+      "The homes and businesses that feel effortless aren't the ones with the biggest budgets — they're the ones that caught small things early. On building a culture of maintenance before you need repairs.",
+    category: "Modern Living",
+    date: "2026-09-29",
+    readMins: 5,
+    author: "The Zigam Journal",
+    cover: { variant: "cream", icon: "fa-wrench" },
+    featured: true,
+    body: [
+      {
+        p: "Most damage doesn't arrive suddenly. It accumulates — a dripping tap no one reports, a hinge that's been stiff for months, a filter that was due for a change three seasons ago. By the time it becomes a visible problem, it's usually already an expensive one.",
+      },
+      {
+        h: "Maintenance is a culture, not a checklist",
+        p: "A maintenance culture isn't a once-a-year inspection. It's the habit of noticing — and acting on — the small signals a home or workplace gives off continuously. It requires someone present often enough, and attentive enough, to catch what the owner is too busy to see.",
+      },
+      {
+        p: "This is one reason a trained Associate adds more value than a one-off cleaner. Someone who moves through your space regularly starts to notice what's changed: the squeak that's new, the leak that's starting, the surface that's wearing differently than it did last month.",
+      },
+      {
+        h: "Why we built the maintenance journal",
+        p: "At Zigam, our Associates are trained to flag what they observe — not just clean around it. Catching a small repair early is almost always cheaper, safer and less disruptive than discovering it once it's failed completely. A culture of maintenance protects the asset you've already built, instead of waiting to repair it.",
+      },
+    ],
+  },
+  {
+    slug: "redefining-hospitality-the-future-of-the-industry",
+    title: "Redefining Hospitality: The Future of the Industry",
+    excerpt:
+      "Hospitality used to mean a building — a hotel, a restaurant, a venue. Increasingly, it means a standard of care that can travel anywhere a client needs it, including their own front door.",
+    category: "Industry",
+    date: "2026-09-15",
+    readMins: 6,
+    author: "The Zigam Journal",
+    cover: { variant: "gold", icon: "fa-concierge-bell" },
+    body: [
+      {
+        p: "For most of its history, hospitality has been tied to a place. You travelled to the hotel, the restaurant, the spa, to receive its standard of care. That standard rarely left the building.",
+      },
+      {
+        h: "The unbundling of hospitality",
+        p: "That's changing. The disciplines that made great hospitality possible — rigorous training, meticulous attention to detail, genuine anticipation of a guest's needs — are being unbundled from the physical venue and delivered wherever the client actually is: at home, in the office, mid-move, hosting a dinner.",
+      },
+      {
+        p: "This is the opportunity Zigam was built around. We borrow the training rigour and service culture of five-star hospitality — mise en place, discretion, consistency — and apply it to the homes and workplaces our clients already occupy, on a cadence that fits their life rather than a destination they have to travel to.",
+      },
+      {
+        h: "What this means for the next decade",
+        p: "The operators who will define the next era of hospitality won't necessarily own the most beautiful buildings. They'll be the ones who can reliably deliver a world-class standard of care anywhere, through people who are trained, vetted and genuinely invested in the craft of service. That's the future we're building toward.",
+      },
+    ],
+  },
+  {
     slug: "the-quiet-luxury-of-a-kept-home",
     title: "The Quiet Luxury of a Kept Home",
     excerpt:
@@ -26,7 +81,6 @@ export const blogPosts: BlogPost[] = [
     readMins: 5,
     author: "The Zigam Journal",
     cover: { variant: "dark", icon: "fa-house-chimney" },
-    featured: true,
     body: [
       {
         p: "There is a particular feeling that greets you in a well-kept home. The air feels lighter. Surfaces hold their line. Nothing calls for your attention, and so your attention is finally yours again.",

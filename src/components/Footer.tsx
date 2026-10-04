@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} Zigam · {site.rc} · All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Zigam, A Lifestyle Company · {site.rc} · All rights reserved.</p>
           <p style={{ fontSize: "0.75rem", marginTop: "0.3rem" }}>{site.tagline}</p>
         </div>
       </div>

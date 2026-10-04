@@ -18,7 +18,7 @@ export const site = {
     linkedin: "https://www.linkedin.com/company/zigam/",
   },
   offices: {
-    enugu: { label: "Enugu", lines: ["Number 4 Ridge Way Road,", "GRA, Enugu."] },
+    enugu: { label: "Enugu", lines: ["Number 4B Ridge Way Road,", "GRA, Enugu."] },
     lagos: { label: "Lagos", lines: ["Bayview Estate,", "Lekki, Lagos State."] },
   },
 };
@@ -68,13 +68,13 @@ export const oziServices = [
 
 // ---- Ozi Membership tiers (monthly) ----
 export const oziTiers = [
-  { plan: "Economy", freq: "1 day / week · 4 days / month", price: "52,000" },
-  { plan: "Essential", freq: "2 days / week · 8 days / month", price: "104,000" },
-  { plan: "Standard", freq: "3 days / week · 12 days / month", price: "156,000" },
-  { plan: "Premium", freq: "4 days / week · 16 days / month", price: "208,000" },
-  { plan: "Business", freq: "5 days / week · 20 days / month", price: "260,000" },
-  { plan: "Executive", freq: "6 days / week · 24 days / month", price: "312,000" },
-  { plan: "Luxury", freq: "7 days / week · all days of the month", price: "364,000" },
+  { plan: "Economy", freq: "1 day / week · 4 days / month", price: "52,000", daysPerWeek: 1 },
+  { plan: "Essential", freq: "2 days / week · 8 days / month", price: "104,000", daysPerWeek: 2 },
+  { plan: "Standard", freq: "3 days / week · 12 days / month", price: "156,000", daysPerWeek: 3 },
+  { plan: "Premium", freq: "4 days / week · 16 days / month", price: "208,000", daysPerWeek: 4 },
+  { plan: "Business", freq: "5 days / week · 20 days / month", price: "260,000", daysPerWeek: 5 },
+  { plan: "Executive", freq: "6 days / week · 24 days / month", price: "312,000", daysPerWeek: 6 },
+  { plan: "Luxury", freq: "7 days / week · all days of the month", price: "364,000", daysPerWeek: 7 },
 ];
 
 export const deepCleaning = [

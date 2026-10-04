@@ -8,7 +8,7 @@ import { formatNaira } from "@/lib/pricing";
 
 type Booking = {
   id: string;
-  booking_type: "one_time" | "subscription";
+  booking_type: "one_time" | "subscription" | "taste_of_ozi";
   location: string;
   service: string | null;
   ozi_plan: string | null;
@@ -165,7 +165,7 @@ export default function Account() {
   }
 
   const memberships = bookings.filter((b) => b.booking_type === "subscription");
-  const oneTimes = bookings.filter((b) => b.booking_type === "one_time");
+  const oneTimes = bookings.filter((b) => b.booking_type === "one_time" || b.booking_type === "taste_of_ozi");
   const firstName = session.user.email?.split("@")[0];
 
   return (
@@ -272,7 +272,7 @@ export default function Account() {
                     const rated = ratings.find((r) => r.booking_id === b.id);
                     return (
                       <tr key={b.id}>
-                        <td>{serviceLabels[b.service ?? ""] ?? b.service ?? "—"}</td>
+                        <td>{b.booking_type === "taste_of_ozi" ? "A Taste of Ozi" : serviceLabels[b.service ?? ""] ?? b.service ?? "—"}</td>
                         <td>{fmtDate(b.service_date)}</td>
                         <td>{statusLabel[b.status] ?? b.status}</td>
                         <td>{b.total_amount ? formatNaira(b.total_amount) : "Quote"}</td>

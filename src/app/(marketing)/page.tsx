@@ -32,7 +32,7 @@ export default function Home() {
           </div>
           <Reveal className="hero-figure" delay={200}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/hero-associate-uniform.png" alt="A Zigam associate in uniform" />
+            <img src="/images/hero-associates-uniform-2.png" alt="Zigam associates in uniform" />
             <div className="badge">
               <strong>The Ozi Experience</strong>
               <span>Four services, one experience</span>
@@ -131,7 +131,7 @@ export default function Home() {
             </Reveal>
             <Reveal className="card price-card" delay={160}>
               <h3>Deep Cleaning</h3>
-              <div className="amount">₦90,000<span style={{ fontSize: "0.9rem" }}>+</span></div>
+              <div className="amount">From ₦90,000</div>
               <p>A thorough, in-depth clean for every area of your space.</p>
             </Reveal>
             <Reveal className="card price-card" delay={240}>

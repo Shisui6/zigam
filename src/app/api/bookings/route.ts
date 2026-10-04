@@ -68,6 +68,7 @@ export async function POST(req: Request) {
         bedrooms: body.bedrooms ?? null,
         service_date: body.date ?? null,
         time_slot: body.timeSlot ?? null,
+        preferred_days: body.preferredDays ?? null,
         address: body.address ?? null,
         access_instructions: body.accessInstructions ?? null,
         has_pets: body.hasPets ?? false,
